@@ -1,4 +1,4 @@
-.footer_copyright {
+.footer__copyright {
   color: #545454;
   font-family: 'Inter', Arial, sans-serif;
   font-size: 18px;
@@ -8,7 +8,7 @@
 }
 
 @media screen and (max-width: 710px) {
-  .footer_copyright {
+  .footer__copyright {
     font-size: 14px;
   }
 }
