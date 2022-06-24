@@ -9,6 +9,16 @@
   grid-column: 2/3;
   grid-row: 2/3;
   padding-top: 8px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+  max-width: 400px;
+}
+
+@media screen and (max-width: 800px) {
+  .profile__subtitle {
+    max-width: 300px;
+  }
 }
 
 @media screen and (max-width: 710px) {
@@ -18,5 +28,6 @@
     grid-row: 3/4;
     margin-bottom: 32px;
     padding: 0;
+    max-width: 190px;
   }
 }

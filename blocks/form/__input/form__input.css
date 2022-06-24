@@ -1,5 +1,5 @@
 .form__input {
-  padding: 13px 0;
+  padding: 11px 11px;
   margin: 0 0 17px 0;
   border: none;
   border-bottom: 1px solid #d3d3d3;
@@ -9,10 +9,7 @@
   font-size: 14px;
   line-height: 1.2;
   width: 358px;
-}
-
-.form__input:focus {
-  outline: none;
+  box-sizing: border-box;
 }
 
 .form__input:last-child {
