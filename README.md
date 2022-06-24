@@ -1,7 +1,8 @@
 # Mesto
 ## Проектная работа №4 Яндекс.Практикум  
 
-[Ссылка на GitHub Pages](https://nikolskii.github.io/russian-travel/index.html)
+[Ссылка на GitHub Pages](https://nikolskii.github.io/mesto/index.html)
 
+Mesto — интерактивная страницей, куда можно добавлять фотографии, удалять их и ставить лайки.
 
-В практической работе закреплены навыки адаптивной верстки с использованием Flexbox, Grid Layout и media queries.
+В практической работе закреплены навыки адаптивной верстки с использованием Flexbox, Grid Layout и media queries, реализовано диалоговое окно редактирования профиля с использованием JavaScript.
