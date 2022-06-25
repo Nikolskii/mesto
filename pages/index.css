@@ -24,8 +24,8 @@
 @import url(../blocks/form/form.css);
 @import url(../blocks/form/__user-info/form__user-info.css);
 @import url(../blocks/form/__input/form__input.css);
-@import url(../blocks/form/__name/form__name.css);
-@import url(../blocks/form/__job/form__job.css);
+@import url(../blocks/form/__input/_type/_name/form__input_type_name.css);
+@import url(../blocks/form/__input/_type/_job/form__input_type_job.css);
 @import url(../blocks/form/__button/form__button.css);
-@import url(../blocks/popup/__close-button/close-button.css);
+@import url(../blocks/popup/__close-button/popup__close-button.css);
 @import url(../blocks/popup/_opened/popup_opened.css);

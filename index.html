@@ -15,40 +15,40 @@
     <section class="profile">
       <img class="profile__avatar" src="./images/profile-avatar.jpg" alt="Аватар">
         <h1 class="profile__title">Жак-Ив Кусто</h1>
-        <button class="profile__edit-button"></button>
+        <button class="profile__edit-button" type="button"></button>
       <p class="profile__subtitle">Исследователь океана</p>
-      <button class="profile__add-button"></button>
+      <button class="profile__add-button" type="button"></button>
     </section>
     <section class="elements" aria-label="Места">
       <article class="element">
         <img class="element__image" src="./images/element-karachaevsk.jpg" alt="Карачаевск">
         <h2 class="element__title">Карачаевск</h2>
-        <button class="element__like"></button>
+        <button class="element__like" type="button"></button>
       </article>
       <article class="element">
         <img class="element__image" src="./images/element-elbrus.jpg" alt="Гора Эльбрус">
         <h2 class="element__title">Гора Эльбрус</h2>
-        <button class="element__like"></button>
+        <button class="element__like" type="button"></button>
       </article>
       <article class="element">
         <img class="element__image" src="./images/element-dombai.jpg" alt="Домбай">
         <h2 class="element__title">Домбай</h2>
-        <button class="element__like"></button>
+        <button class="element__like" type="button"></button>
       </article>
       <article class="element">
         <img class="element__image" src="./images/element-elbrus.jpg" alt="Гора Эльбрус">
         <h2 class="element__title">Гора Эльбрус</h2>
-        <button class="element__like"></button>
+        <button class="element__like" type="button"></button>
       </article>
       <article class="element">
         <img class="element__image" src="./images/element-dombai.jpg" alt="Домбай">
         <h2 class="element__title">Домбай</h2>
-        <button class="element__like"></button>
+        <button class="element__like" type="button"></button>
       </article>
       <article class="element">
         <img class="element__image" src="./images/element-karachaevsk.jpg" alt="Карачаево-Черкесия">
         <h2 class="element__title">Карачаево-Черкесия</h2>
-        <button class="element__like"></button>
+        <button class="element__like" type="button"></button>
       </article>
     </section>
   </main>
@@ -56,17 +56,17 @@
     <p class="footer__copyright">&copy; 2022 Mesto Russia</p>
   </footer>
   <section class="popup" aria-label="Редактирование профиля">
-    <section class="popup__container">
+    <div class="popup__container">
       <h2 class="popup__title">Редактировать профиль</h2>
-      <form class="form">
+      <form class="form" name="form-profile">
         <fieldset class="form__user-info">
-          <input class="form__input form__name" type="text" name="form__name" placeholder="Жак-Ив Кусто" value="Жак-Ив Кусто">
-          <input class="form__input form__job" type="text" name="form__job" placeholder="Исследователь океана" value="Исследователь океана">
+          <input class="form__input form__input_type_name" type="text" name="form__input_type_name">
+          <input class="form__input form__input_type_job" type="text" name="form__input_type_job">
         </fieldset>
         <button class="form__button" type="submit" value="Сохранить">Сохранить</button>
       </form>
-      <button class="popup__close-button"></button> 
-    </section>
+      <button class="popup__close-button" type="button"></button> 
+    </div>
   </section>
   <script src="./scripts/index.js"></script>
 </body>
