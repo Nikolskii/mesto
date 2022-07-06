@@ -25,19 +25,34 @@
   <footer class="footer">
     <p class="footer__copyright">&copy; 2022 Mesto Russia</p>
   </footer>
-  <section class="popup" aria-label="Редактирование профиля">
+  <section class="popup popup_purpose_edit-profile" aria-label="Редактирование профиля">
     <div class="popup__container">
       <h2 class="popup__title">Редактировать профиль</h2>
-      <form class="form" name="form-profile">
-        <fieldset class="form__user-info">
+      <form class="form form_purpose_edit-profile" name="form-profile">
+        <fieldset class="form__fieldset">
           <input class="form__input form__input_type_name" type="text" name="form__input_type_name">
           <input class="form__input form__input_type_job" type="text" name="form__input_type_job">
         </fieldset>
         <button class="form__button" type="submit" value="Сохранить">Сохранить</button>
       </form>
-      <button class="popup__close-button" type="button"></button> 
+      <button class="popup__close-button popup__close-button_place_edit-profile" type="button"></button> 
     </div>
   </section>
+
+  <section class="popup popup_purpose_add-place" aria-label="Новое место">
+    <div class="popup__container">
+      <h2 class="popup__title">Новое место</h2>
+      <form class="form form_purpose_add-place" name="form-place">
+        <fieldset class="form__fieldset">
+          <input class="form__input" type="text" name="" placeholder="Название">
+          <input class="form__input" type="text" name="" placeholder="Ссылка на картинку">
+        </fieldset>
+        <button class="form__button" type="submit" value="Создать">Создать</button>
+      </form>
+      <button class="popup__close-button popup__close-button_place_add-place" type="button"></button> 
+    </div>
+  </section>
+
   <template id="template-element">
     <article class="element">
       <img class="element__image" src="" alt="">
