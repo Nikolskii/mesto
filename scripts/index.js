@@ -52,6 +52,7 @@ const placeInput = formAddCard.querySelector('.form__input_type_place');
 const linkInput = formAddCard.querySelector('.form__input_type_link');
 
 const cardsElement = document.querySelector('.elements');
+const cardTemplate = document.querySelector('#template-element').content;
 
 const openPopup = function(element) {
     element.classList.add('popup_opened');
@@ -79,11 +80,17 @@ const formAddCardSubmitHandler = function(evt) {
 }
 
 function createCard(link, name) {
-  const cardElement = document.querySelector('#template-element').content.querySelector('.element').cloneNode(true);
+  const cardElement = cardTemplate.querySelector('.element').cloneNode(true)
   cardElement.querySelector('.element__image').src = link;
   cardElement.querySelector('.element__image').alt = name;
   cardElement.querySelector('.element__title').textContent = name;
-return cardElement;
+
+  const likeButton = cardElement.querySelector('.element__like');
+  const deleteButton = cardElement.querySelector('.element__delete');
+  likeButton.addEventListener('click', toogleLike);
+  deleteButton.addEventListener('click', deleteCard);
+  
+  return cardElement;
 }
 
 function renderCard(link, name) {
@@ -91,10 +98,17 @@ function renderCard(link, name) {
   cardsElement.prepend(cardElement);
 }
 
+function toogleLike (evt) {
+  evt.target.classList.toggle('element__like_active');
+}
+
+function deleteCard(evt) {
+  evt.target.closest('.element').remove();
+}
+
 initialCards.forEach(function(initialCards) {
   renderCard(initialCards.link, initialCards.name)
 })
-
 
 // listeners open popup
 popupEditProfileOpenButton.addEventListener('click', function () {
@@ -115,5 +129,3 @@ popupAddCardCloseButton.addEventListener('click', function () {
 // listeners submit
 formEditProfile.addEventListener('submit', formEditProfileSubmitHandler);
 formAddCard.addEventListener('submit', formAddCardSubmitHandler);
-
-
