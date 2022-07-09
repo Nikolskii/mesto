@@ -5,7 +5,13 @@
   position: fixed;
   top: 0;
   left: 0;
-  display: none;
+  /* display: none; */
+  display: flex;
   justify-content: center;
   align-items: center;
+
+  visibility: hidden;
+  opacity: 0;
+  transition: visibility 0.5s, opacity 0.5s;
 }
+
