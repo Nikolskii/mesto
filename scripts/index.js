@@ -25,9 +25,12 @@ const initialCards = [
   }
 ];
 
+
+
 // Popups
 const popupEditProfile = document.querySelector('.popup_purpose_edit-profile');
 const popupAddCard = document.querySelector('.popup_purpose_add-card');
+const popupImage = document.querySelector('.popup__purpose_image');
 
 // Open buttons
 const popupEditProfileOpenButton = document.querySelector('.profile__edit-button');
@@ -36,6 +39,7 @@ const popupAddPlaceOpenButton = document.querySelector('.profile__add-button');
 // Close buttons
 const popupEditProfileCloseButton = popupEditProfile.querySelector('.popup__close-button_place_edit-profile');
 const popupAddCardCloseButton = popupAddCard.querySelector('.popup__close-button_place_add-card');
+const popupImageCloseButton = popupImage.querySelector('.popup__close-button_place_open-image');
 
 // Profile texts
 const titleElement = document.querySelector('.profile__title');
@@ -53,6 +57,10 @@ const linkInput = formAddCard.querySelector('.form__input_type_link');
 
 const cardsElement = document.querySelector('.elements');
 const cardTemplate = document.querySelector('#template-element').content;
+
+const popupImagePicture = popupImage.querySelector('.popup__image');
+const popupImageCaption = popupImage.querySelector('.popup__caption');
+
 
 const openPopup = function(element) {
     element.classList.add('popup_opened');
@@ -87,10 +95,19 @@ function createCard(link, name) {
 
   const likeButton = cardElement.querySelector('.element__like');
   const deleteButton = cardElement.querySelector('.element__delete');
+  const openButton = cardElement.querySelector('.element__image');
+
   likeButton.addEventListener('click', toogleLike);
   deleteButton.addEventListener('click', deleteCard);
+  openButton.addEventListener('click', openCard);
   
   return cardElement;
+}
+
+function openCard(evt) {
+  popupImage.classList.add('popup_opened');
+  popupImagePicture.src = evt.target.src;
+  popupImageCaption.textContent = evt.target.alt;
 }
 
 function renderCard(link, name) {
@@ -125,6 +142,10 @@ popupEditProfileCloseButton.addEventListener('click', function () {
 popupAddCardCloseButton.addEventListener('click', function () {
   closePopup(popupAddCard)
 });
+popupImageCloseButton.addEventListener('click', function () {
+  closePopup(popupImage)
+});
+
 
 // listeners submit
 formEditProfile.addEventListener('submit', formEditProfileSubmitHandler);
