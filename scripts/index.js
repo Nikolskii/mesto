@@ -25,8 +25,6 @@ const initialCards = [
   }
 ];
 
-
-
 // Popups
 const popupEditProfile = document.querySelector('.popup_purpose_edit-profile');
 const popupAddCard = document.querySelector('.popup_purpose_add-card');
@@ -45,22 +43,20 @@ const popupImageCloseButton = popupImage.querySelector('.popup__close-button_pla
 const titleElement = document.querySelector('.profile__title');
 const subtitleElement = document.querySelector('.profile__subtitle');
 
-// Form Edit Profile
+// Edit Profile Form 
 const formEditProfile = document.querySelector('.form_purpose_edit-profile');
 const nameInput = formEditProfile.querySelector('.form__input_type_name');
 const jobInput = formEditProfile.querySelector('.form__input_type_job');
 
-// Form Add Card
+// Add Card Form
 const formAddCard = document.querySelector('.form_purpose_add-card');
 const placeInput = formAddCard.querySelector('.form__input_type_place');
 const linkInput = formAddCard.querySelector('.form__input_type_link');
 
 const cardsElement = document.querySelector('.elements');
 const cardTemplate = document.querySelector('#template-element').content;
-
 const popupImagePicture = popupImage.querySelector('.popup__image');
 const popupImageCaption = popupImage.querySelector('.popup__caption');
-
 
 const openPopup = function(element) {
     element.classList.add('popup_opened');
@@ -104,15 +100,15 @@ function createCard(link, name) {
   return cardElement;
 }
 
+function renderCard(link, name) {
+  const cardElement = createCard(link, name);
+  cardsElement.prepend(cardElement);
+}
+
 function openCard(evt) {
   popupImage.classList.add('popup_opened');
   popupImagePicture.src = evt.target.src;
   popupImageCaption.textContent = evt.target.alt;
-}
-
-function renderCard(link, name) {
-  const cardElement = createCard(link, name);
-  cardsElement.prepend(cardElement);
 }
 
 function toogleLike (evt) {
@@ -145,7 +141,6 @@ popupAddCardCloseButton.addEventListener('click', function () {
 popupImageCloseButton.addEventListener('click', function () {
   closePopup(popupImage)
 });
-
 
 // listeners submit
 formEditProfile.addEventListener('submit', formEditProfileSubmitHandler);
