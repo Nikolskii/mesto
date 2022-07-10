@@ -17,19 +17,19 @@
 }
 
 .form__input::-webkit-input-placeholder {
-  color: #000;
+  color: #c4c4c4;
 }
 .form__input::-moz-placeholder {
-  color: #000;
+  color: #c4c4c4;
 }
 .form__input:-ms-input-placeholder {
-  color: #000;
+  color: #c4c4c4;
 }
 .form__input::-ms-input-placeholder {
-  color: #000;
+  color: #c4c4c4;
 }
 .form__input::placeholder {
-  color: #000;
+  color: #c4c4c4;
 }
 
 @media screen and (max-width: 580px) {
@@ -39,20 +39,4 @@
   .form__input:last-child {
     margin-bottom: 45px;
   }
-}
-
-.form__input::-webkit-input-placeholder {
-  color: #c4c4c4;
-}
-.form__input::-moz-placeholder {
-  color: #c4c4c4;
-}
-.form__input:-ms-input-placeholder {
-  color: #c4c4c4;
-}
-.form__input::-ms-input-placeholder {
-  color: #c4c4c4;
-}
-.form__input::placeholder {
-  color: #c4c4c4;
 }
