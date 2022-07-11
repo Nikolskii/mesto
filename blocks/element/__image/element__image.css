@@ -6,3 +6,7 @@
   margin-bottom: 25px;
   object-fit: cover;
 }
+
+.element__image:hover {
+  cursor: pointer;
+}

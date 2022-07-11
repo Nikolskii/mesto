@@ -15,9 +15,9 @@
     <section class="profile">
       <img class="profile__avatar" src="./images/profile-avatar.jpg" alt="Аватар">
         <h1 class="profile__title">Жак-Ив Кусто</h1>
-        <button class="profile__edit-button" type="button"></button>
+        <button class="profile__edit-button" type="button" aria-label="Редактировать профиль"></button>
       <p class="profile__subtitle">Исследователь океана</p>
-      <button class="profile__add-button" type="button"></button>
+      <button class="profile__add-button" type="button" aria-label="Добавить фотографию"></button>
     </section>
     <section class="elements" aria-label="Места">
     </section>
@@ -35,7 +35,7 @@
         </fieldset>
         <button class="form__button" type="submit" value="Сохранить">Сохранить</button>
       </form>
-      <button class="popup__close-button popup__close-button_place_edit-profile" type="button"></button> 
+      <button class="popup__close-button popup__close-button_place_edit-profile" type="button" aria-label="Закрыть"></button> 
     </div>
   </section>
   <section class="popup popup_purpose_add-card" aria-label="Новое место">
@@ -48,7 +48,7 @@
         </fieldset>
         <button class="form__button" type="submit" value="Создать">Создать</button>
       </form>
-      <button class="popup__close-button popup__close-button_place_add-card" type="button"></button> 
+      <button class="popup__close-button popup__close-button_place_add-card" type="button" aria-label="Закрыть"></button> 
     </div>
   </section>
   <section class="popup popup_purpose_open-image" aria-label="Большое изображение">
@@ -57,15 +57,15 @@
         <img class="popup__image" src="#" alt="alt">
         <figcaption class="popup__caption"></figcaption>
       </figure> 
-      <button class="popup__close-button popup__close-button_place_open-image" type="button"></button>
+      <button class="popup__close-button popup__close-button_place_open-image" type="button" aria-label="Закрыть"></button>
     </div>
   </section>
   <template id="template-element">
     <article class="element">
       <img class="element__image" src="#" alt="alt">
       <h2 class="element__title"></h2>
-      <button class="element__delete" type="button"></button>
-      <button class="element__like" type="button"></button>
+      <button class="element__delete" type="button" aria-label="Удалить"></button>
+      <button class="element__like" type="button" aria-label="Нравится"></button>
     </article>
   </template>
   <script src="./scripts/index.js"></script>

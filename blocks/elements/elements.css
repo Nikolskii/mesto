@@ -2,5 +2,17 @@
   display: flex;
   flex-wrap: wrap;
   gap: 20px 17px;
-  justify-content: center;
+  margin: 0 auto;
+}
+
+@media screen and (max-width: 918px) {
+  .elements {
+    max-width: 581px;
+  }
+}
+
+@media screen and (max-width: 620px) {
+  .elements {
+    max-width: 282px;
+  }
 }
