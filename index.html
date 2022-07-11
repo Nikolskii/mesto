@@ -30,8 +30,8 @@
       <h2 class="popup__title">Редактировать профиль</h2>
       <form class="form form_purpose_edit-profile" name="form-profile">
         <fieldset class="form__fieldset">
-          <input class="form__input form__input_type_name" type="text" name="form__input_type_name">
-          <input class="form__input form__input_type_job" type="text" name="form__input_type_job">
+          <input class="form__input form__input_type_name" type="text" name="form__input_type_name" required>
+          <input class="form__input form__input_type_job" type="text" name="form__input_type_job" required>
         </fieldset>
         <button class="form__button" type="submit" value="Сохранить">Сохранить</button>
       </form>
@@ -43,8 +43,8 @@
       <h2 class="popup__title">Новое место</h2>
       <form class="form form_purpose_add-card" name="form-place">
         <fieldset class="form__fieldset">
-          <input class="form__input form__input_type_place" type="text" name="form__input_type_place" placeholder="Название">
-          <input class="form__input form__input_type_link" type="text" name="form__input_type_link" placeholder="Ссылка на картинку">
+          <input class="form__input form__input_type_place" type="text" name="form__input_type_place" placeholder="Название" required>
+          <input class="form__input form__input_type_link" type="url" name="form__input_type_link" placeholder="Ссылка на картинку" required>
         </fieldset>
         <button class="form__button" type="submit" value="Создать">Создать</button>
       </form>
@@ -68,6 +68,7 @@
       <button class="element__like" type="button" aria-label="Нравится"></button>
     </article>
   </template>
-  <script src="./scripts/index.js"></script>
+  <script defer src="./scripts/cards.js"></script>
+  <script defer src="./scripts/index.js"></script>
 </body>
 </html>
