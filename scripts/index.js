@@ -39,6 +39,12 @@ const closePopup = function(element) {
   element.classList.remove('popup_opened');
 }
 
+const closePopupByClickOnOverlay = function(event, element) {
+  if (event.target === event.currentTarget) {
+    closePopup(element);
+  }
+}
+
 const formEditProfileSubmitHandler = function(evt) {
   evt.preventDefault(); 
   titleElement.textContent = nameInput.value;
@@ -106,15 +112,28 @@ popupAddCardOpenButton.addEventListener('click', function () {
 
 // listeners close popup
 popupEditProfileCloseButton.addEventListener('click', function () {
-  closePopup(popupEditProfile)
+  closePopup(popupEditProfile);
 });
 
 popupAddCardCloseButton.addEventListener('click', function () {
-  closePopup(popupAddCard)
+  closePopup(popupAddCard);
 });
 
 popupImageCloseButton.addEventListener('click', function () {
-  closePopup(popupImage)
+  closePopup(popupImage);
+});
+
+//listeners close popup by click on overlay
+popupEditProfile.addEventListener('click', function () {
+  closePopupByClickOnOverlay(event, popupEditProfile);
+});
+
+popupAddCard.addEventListener('click', function () {
+  closePopupByClickOnOverlay(event, popupAddCard);
+});
+
+popupImage.addEventListener('click', function () {
+  closePopupByClickOnOverlay(event, popupImage);
 });
 
 // listeners submit
