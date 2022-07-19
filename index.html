@@ -27,28 +27,42 @@
   </footer>
   <section class="popup popup_purpose_edit-profile" aria-label="Редактирование профиля">
     <div class="popup__container">
+
+
       <h2 class="popup__title">Редактировать профиль</h2>
-      <form class="form form_purpose_edit-profile" name="form-profile">
+      <form class="form form_purpose_edit-profile" name="form-profile" novalidate>
         <fieldset class="form__fieldset">
-          <input class="form__input form__input_type_name" type="text" name="form__input_type_name" required>
-          <input class="form__input form__input_type_job" type="text" name="form__input_type_job" required>
+          <input class="form__input form__input_type_name" type="text" name="form__input_type_name" id="form__input_type_name" minlength="2" maxlength="40" required>
+          <span class="form__input_type_name-error"></span>
+          <input class="form__input form__input_type_job" type="text" name="form__input_type_job" id="form__input_type_job" minlength="2" maxlength="200" required>
+          <span class="form__input_type_job-error"></span>
+          <button class="form__button" type="submit" value="Сохранить">Сохранить</button>
         </fieldset>
-        <button class="form__button" type="submit" value="Сохранить">Сохранить</button>
       </form>
       <button class="popup__close-button popup__close-button_place_edit-profile" type="button" aria-label="Закрыть"></button> 
+    
+
+    
     </div>
   </section>
   <section class="popup popup_purpose_add-card" aria-label="Новое место">
     <div class="popup__container">
+
+
+
       <h2 class="popup__title">Новое место</h2>
-      <form class="form form_purpose_add-card" name="form-place">
+      <form class="form form_purpose_add-card" name="form-place" novalidate>
         <fieldset class="form__fieldset">
-          <input class="form__input form__input_type_place" type="text" name="form__input_type_place" placeholder="Название" required>
-          <input class="form__input form__input_type_link" type="url" name="form__input_type_link" placeholder="Ссылка на картинку" required>
+          <input class="form__input form__input_type_place" type="text" name="form__input_type_place" placeholder="Название" id="form__input_type_place" minlength="2" maxlength="30" required>
+          <span class="form__input_type_place-error"></span>
+          <input class="form__input form__input_type_link" type="url" name="form__input_type_link" placeholder="Ссылка на картинку" id="form__input_type_link" required>
+          <span class="form__input_type_link-error"></span>
+          <button class="form__button" type="submit" value="Создать">Создать</button>
         </fieldset>
-        <button class="form__button" type="submit" value="Создать">Создать</button>
       </form>
       <button class="popup__close-button popup__close-button_place_add-card" type="button" aria-label="Закрыть"></button> 
+    
+    
     </div>
   </section>
   <section class="popup popup_purpose_open-image" aria-label="Большое изображение">
