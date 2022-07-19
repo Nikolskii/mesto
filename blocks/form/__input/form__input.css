@@ -1,6 +1,6 @@
 .form__input {
-  padding: 11px 11px;
-  margin: 0 0 17px 0;
+  padding: 9px;
+  margin: 0 0 35px 0;
   border: none;
   border-bottom: 1px solid #d3d3d3;
   color: #000;
@@ -10,10 +10,6 @@
   line-height: 1.2;
   width: 358px;
   box-sizing: border-box;
-}
-
-.form__input:last-child {
-  margin-bottom: 48px;
 }
 
 .form__input::-webkit-input-placeholder {
