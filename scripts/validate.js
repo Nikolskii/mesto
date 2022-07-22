@@ -1,66 +1,76 @@
-const showInputError = (formElement, inputElement, errorMessage) => {
-  const errorElement = formElement.querySelector(`.${inputElement.id}-error`);
-  inputElement.classList.add('form__input_type_error');
-  errorElement.textContent = errorMessage;
-  errorElement.classList.add('form__input-error_active');
-};
-
-const hideInputError = (formElement, inputElement) => {
-  const errorElement = formElement.querySelector(`.${inputElement.id}-error`);
-  inputElement.classList.remove('form__input_type_error');
-  errorElement.classList.remove('form__input-error_active');
-  errorElement.textContent = '';
-};
-
-const checkInputValidity = (formElement, inputElement) => {
-  if (!inputElement.validity.valid) {
-    showInputError(formElement, inputElement, inputElement.validationMessage);
-  } else {
-    hideInputError(formElement, inputElement);
-  }
+const formItems = {
+  formSelector: '.form',
+  inputSelector: '.form__input',
+  submitButtonSelector: '.form__button',
+  inactiveButtonClass: 'form__button_inactive',
+  inputErrorClass: 'form__input_type_error',
+  errorClass: 'form__input-error_active'
 }
 
-const setEventListeners = (formElement) => {
-  const inputList = Array.from(formElement.querySelectorAll('.form__input'));
-  const buttonElement = formElement.querySelector('.form__button');
+function enableValidation(configForm) {
+  const formList = Array.from(document.querySelectorAll(configForm.formSelector));
 
-  toggleButtonState(inputList, buttonElement);
+  formList.forEach((formElement) => {
+    formElement.addEventListener('submit', handleFormSubmit);
+
+    setEventListeners(formElement, configForm);
+  });
+};
+
+function handleFormSubmit (event) {
+  event.preventDefault();
+};
+
+function setEventListeners(formElement, configForm) {
+  const inputList = Array.from(formElement.querySelectorAll(configForm.inputSelector));
+  const buttonElement = formElement.querySelector(configForm.submitButtonSelector)
 
   inputList.forEach((inputElement) => {
     inputElement.addEventListener('input', function () {
-      checkInputValidity(formElement, inputElement);
-      toggleButtonState(inputList, buttonElement);
-    });
-  });
-};
-
-const enableValidation = () => {
-  const formList = Array.from(document.querySelectorAll('.form'));
-  formList.forEach((formElement) => {
-    formElement.addEventListener('submit', function (evt) {
-      evt.preventDefault();
-    });
-
-    const fieldsetList = Array.from(formElement.querySelectorAll('.form__fieldset'));
-
-    fieldsetList.forEach((fieldSet) => {
-      setEventListeners(fieldSet);
-    });
-  });
-};
-
-const hasInvalidInput = (inputList) => {
-  return inputList.some((inputElement) => {
-    return !inputElement.validity.valid;
+      handleFormInput(inputElement, configForm);
+      setSubmitButtonState(buttonElement, formElement);
+    })
   })
 };
 
-const toggleButtonState = (inputList, buttonElement) => {
-  if (hasInvalidInput(inputList)) {
-    buttonElement.classList.add('form__button_inactive');
+function setSubmitButtonState(buttonElement, formElement) {
+  const isValid = formElement.checkValidity();
+
+  if (isValid) {
+    buttonElement.removeAttribute('disabled');
+    buttonElement.classList.remove(formItems.inactiveButtonClass);
   } else {
-    buttonElement.classList.remove('form__button_inactive');
+    buttonElement.setAttribute('disabled', true);
+    buttonElement.classList.add(formItems.inactiveButtonClass);
   }
+}
+
+function handleFormInput (inputElement, configForm) {
+  if (!inputElement.validity.valid) {
+    showInputError(inputElement, configForm);
+  } else {
+    hideInputError(inputElement, configForm);
+  }
+}
+
+function showInputError(inputElement, configForm) {
+  searchElement(inputElement).textContent = inputElement.validationMessage;
+  searchElement(inputElement).classList.add(configForm.errorClass);
+
+  inputElement.classList.add(configForm.inputErrorClass);
 };
 
-enableValidation();
+function hideInputError(inputElement, configForm) {
+  searchElement(inputElement).textContent = '';
+
+  inputElement.classList.remove(configForm.inputErrorClass);
+}
+
+function searchElement(inputElement) {
+  const inputName = inputElement.getAttribute('name');
+  const errorElement = document.getElementById(`${inputName}-error`);
+
+  return errorElement;
+}
+
+enableValidation(formItems);

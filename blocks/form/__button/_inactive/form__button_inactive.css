@@ -3,8 +3,6 @@
   color: #c5c5c5;
   border: 1px solid #cbcbcb;
   border-radius: 2px;
-  /* pointer-events: none;
-  user-select: none; */
 }
 
 .form__button_inactive:hover {

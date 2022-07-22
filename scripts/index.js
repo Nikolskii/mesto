@@ -56,14 +56,12 @@ const closePopupByKeystrokeEsc = function(evt) {
 }
 
 const formEditProfileSubmitHandler = function(evt) {
-  evt.preventDefault(); 
   titleElement.textContent = nameInput.value;
   subtitleElement.textContent = jobInput.value;
   closePopup(popupEditProfile);
  }
 
 const formAddCardSubmitHandler = function(evt) {
-  evt.preventDefault(); 
   addCard(linkInput.value, placeInput.value);
   closePopup(popupAddCard);
 }
