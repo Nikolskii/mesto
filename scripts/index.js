@@ -35,10 +35,18 @@ const popupImageCaption = popupImage.querySelector('.popup__caption');
 
 const openPopup = function(element) {
   element.classList.add('popup_opened');
+
+  document.addEventListener('keydown', function (evt) {
+    closePopupByKeystrokeEsc(evt);
+});
 }
   
 const closePopup = function(element) {
   element.classList.remove('popup_opened');
+  
+  document.removeEventListener('keydown', function (evt) {
+    closePopupByKeystrokeEsc(evt);
+  });
 }
 
 const closePopupByClickOnOverlay = function(event, element) {
@@ -142,11 +150,6 @@ popupAddCard.addEventListener('click', function () {
 
 popupImage.addEventListener('click', function () {
   closePopupByClickOnOverlay(event, popupImage);
-});
-
-// listener close popup by keystroke 'Esc'
-document.addEventListener('keydown', function (evt) {
-  closePopupByKeystrokeEsc(evt);
 });
 
 // listeners submit
