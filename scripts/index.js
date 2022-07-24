@@ -46,6 +46,7 @@ const openPopup = function(popup) {
 function openPopupEditProfile(popup) {
   nameInput.value = titleProfile.textContent; 
   jobInput.value = subtitleProfile.textContent;
+  
   openPopup(popup);
 }
 
