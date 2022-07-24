@@ -4,33 +4,35 @@ const formItemsSelectors = {
   submitButtonSelector: '.form__button',
   inactiveButtonClass: 'form__button_inactive',
   inputErrorClass: 'form__input_type_error',
-  errorClass: 'form__input-error_active'
-}
+  errorClass: 'form__input-error_active',
+};
 
 function enableValidation(configForm) {
-  const formList = Array.from(document.querySelectorAll(configForm.formSelector));
+  const formList = Array.from(
+    document.querySelectorAll(configForm.formSelector)
+  );
 
   formList.forEach((form) => {
     form.addEventListener('submit', handleFormSubmit);
 
     setEventListeners(form, configForm);
-  })
+  });
 }
 
-function handleFormSubmit (event) {
+function handleFormSubmit(event) {
   event.preventDefault();
 }
 
 function setEventListeners(form, configForm) {
   const inputList = Array.from(form.querySelectorAll(configForm.inputSelector));
-  const button = form.querySelector(configForm.submitButtonSelector)
+  const button = form.querySelector(configForm.submitButtonSelector);
 
   inputList.forEach((inputForm) => {
     inputForm.addEventListener('input', function () {
       handleFormInput(inputForm, configForm);
       setSubmitButtonState(button, form);
-    })
-  })
+    });
+  });
 }
 
 function setSubmitButtonState(button, form) {
@@ -45,7 +47,7 @@ function setSubmitButtonState(button, form) {
   }
 }
 
-function handleFormInput (inputForm, configForm) {
+function handleFormInput(inputForm, configForm) {
   if (!inputForm.validity.valid) {
     showInputError(inputForm, configForm);
   } else {
