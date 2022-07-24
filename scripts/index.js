@@ -30,8 +30,8 @@ const linkInput = formAddCard.querySelector('.form__input_type_link');
 
 const cardsContainer = document.querySelector('.elements');
 const cardTemplate = document.querySelector('#template-element').content;
-// удалить ниже?
 const cardBlank = cardTemplate.querySelector('.element');
+
 const popupImagePicture = popupImage.querySelector('.popup__image');
 const popupImageCaption = popupImage.querySelector('.popup__caption');
 
@@ -46,7 +46,7 @@ const openPopup = function(popup) {
 function openPopupEditProfile(popup) {
   nameInput.value = titleProfile.textContent; 
   jobInput.value = subtitleProfile.textContent;
-  
+
   openPopup(popup);
 }
 
