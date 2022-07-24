@@ -94,7 +94,7 @@ const handleSubmitFormAddCard = function (evt) {
 };
 
 function createCard(link, name) {
-  card = cardBlank.cloneNode(true);
+  const card = cardBlank.cloneNode(true);
   const imageCard = card.querySelector('.element__image');
 
   imageCard.src = link;
