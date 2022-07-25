@@ -87,10 +87,16 @@ const handleSubmitFormEditProfile = function (evt) {
 };
 
 const handleSubmitFormAddCard = function (evt) {
+  const submitButtonFormAddCard = formAddCard.querySelector('.form__button');
+
   addCard(linkInput.value, placeInput.value);
+
   closePopup(popupAddCard);
-  linkInput.value = '';
-  placeInput.value = '';
+
+  formAddCard.reset();
+
+  submitButtonFormAddCard.disabled = true;
+  submitButtonFormAddCard.classList.add('form__button_inactive');
 };
 
 function createCard(link, name) {
