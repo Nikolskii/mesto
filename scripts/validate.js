@@ -28,7 +28,7 @@ function setEventListeners(form, configForm) {
   const button = form.querySelector(configForm.submitButtonSelector);
 
   inputList.forEach((inputForm) => {
-    inputForm.addEventListener('input', function () {
+    inputForm.addEventListener('input', () => {
       handleFormInput(inputForm, configForm);
       setSubmitButtonState(button, form);
     });
