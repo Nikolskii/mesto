@@ -47,7 +47,7 @@ function openPopup(popup) {
   popup.classList.add('popup_opened');
 
   document.addEventListener('keydown', (event) => {
-    closePopupByKeystrokeEsc(event);
+    closePopupByKeystrokeEsc(event, popup);
   });
 }
 
@@ -72,12 +72,10 @@ function closePopupByClickOnOverlay(event, popup) {
   }
 }
 
-function closePopupByKeystrokeEsc(event) {
-  popupsArray.forEach((popup) => {
-    if (event.key === 'Escape') {
-      closePopup(popup);
-    }
-  });
+function closePopupByKeystrokeEsc(event, popup) {
+  if (event.key === 'Escape') {
+    closePopup(popup);
+  }
 }
 
 function handleSubmitFormEditProfile() {
