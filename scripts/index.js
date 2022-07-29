@@ -89,7 +89,12 @@ function handleSubmitFormEditProfile() {
 function handleSubmitFormAddCard() {
   const submitButtonFormAddCard = formAddCard.querySelector('.form__button');
 
-  addCard(linkInput.value, placeInput.value);
+  const configCard = {
+    name: placeInput.value,
+    link: linkInput.value,
+  };
+
+  addCard(configCard);
 
   closePopup(popupAddCard);
 
@@ -99,13 +104,13 @@ function handleSubmitFormAddCard() {
   submitButtonFormAddCard.classList.add('form__button_inactive');
 }
 
-function createCard(link, name) {
+function createCard(configCard) {
   const card = cardBlank.cloneNode(true);
   const imageCard = card.querySelector('.element__image');
 
-  imageCard.src = link;
-  imageCard.alt = name;
-  card.querySelector('.element__title').textContent = name;
+  imageCard.src = configCard.link;
+  imageCard.alt = configCard.name;
+  card.querySelector('.element__title').textContent = configCard.name;
 
   const buttonLike = card.querySelector('.element__like');
   const buttonDelete = card.querySelector('.element__delete');
@@ -117,8 +122,8 @@ function createCard(link, name) {
   return card;
 }
 
-function addCard(link, name) {
-  const card = createCard(link, name);
+function addCard(configCard) {
+  const card = createCard(configCard);
   cardsContainer.prepend(card);
 }
 
@@ -137,7 +142,7 @@ function deleteCard(event) {
 }
 
 initialCards.forEach((initialCards) => {
-  addCard(initialCards.link, initialCards.name);
+  addCard(initialCards);
 });
 
 // listeners open popup
