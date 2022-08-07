@@ -1,9 +1,12 @@
+import { initialCards } from './initialCards.js';
+import { Card } from './Card.js';
+
 // Popups
 const popupEditProfile = document.querySelector('.popup_purpose_edit-profile');
 const popupAddCard = document.querySelector('.popup_purpose_add-card');
 const popupImage = document.querySelector('.popup_purpose_open-image');
 
-const popupsArray = [popupEditProfile, popupAddCard, popupImage];
+// DELETE? const popupsArray = [popupEditProfile, popupAddCard, popupImage];
 
 // Open buttons
 const popupEditProfileOpenButton = document.querySelector(
@@ -37,8 +40,8 @@ const placeInput = formAddCard.querySelector('.form__input_type_place');
 const linkInput = formAddCard.querySelector('.form__input_type_link');
 
 const cardsContainer = document.querySelector('.elements');
-const cardTemplate = document.querySelector('#template-element').content;
-const cardBlank = cardTemplate.querySelector('.element');
+// DELETE? const cardTemplate = document.querySelector('#template-element').content;
+// DELETE? const cardBlank = cardTemplate.querySelector('.element');
 
 const popupImagePicture = popupImage.querySelector('.popup__image');
 const popupImageCaption = popupImage.querySelector('.popup__caption');
@@ -139,9 +142,10 @@ function deleteCard(event) {
   event.target.closest('.element').remove();
 }
 
-initialCards.forEach((initialCards) => {
-  addCard(initialCards);
-});
+// DELETE?
+// initialCards.forEach((initialCards) => {
+//   addCard(initialCards);
+// });
 
 // listeners open popup
 popupEditProfileOpenButton.addEventListener('click', () => {
@@ -181,3 +185,13 @@ popupImage.addEventListener('click', () => {
 // listeners submit
 formEditProfile.addEventListener('submit', handleSubmitFormEditProfile);
 formAddCard.addEventListener('submit', handleSubmitFormAddCard);
+
+function renderElements() {
+  initialCards.forEach((item) => {
+    const cardItem = new Card(item, '.template-element');
+    const cardElement = cardItem.generateCard();
+    cardsContainer.prepend(cardElement);
+  });
+}
+
+renderElements();
