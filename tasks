@@ -1,3 +1,4 @@
 readme md
 delete from html and js
-разобраться с объявлением const popupImage в Card.js
+
+починить закрытие попапа по esc в cards

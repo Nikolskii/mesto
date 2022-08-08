@@ -4,10 +4,7 @@ import { Card } from './Card.js';
 // Popups
 const popupEditProfile = document.querySelector('.popup_purpose_edit-profile');
 const popupAddCard = document.querySelector('.popup_purpose_add-card');
-// удалить тут popupImage?
 const popupImage = document.querySelector('.popup_purpose_open-image');
-
-// DELETE? const popupsArray = [popupEditProfile, popupAddCard, popupImage];
 
 // Open buttons
 const popupEditProfileOpenButton = document.querySelector(
@@ -41,12 +38,6 @@ const placeInput = formAddCard.querySelector('.form__input_type_place');
 const linkInput = formAddCard.querySelector('.form__input_type_link');
 
 const cardsContainer = document.querySelector('.elements');
-// DELETE? const cardTemplate = document.querySelector('#template-element').content;
-// DELETE? const cardBlank = cardTemplate.querySelector('.element');
-
-// удалить две константы ниже?
-// const popupImagePicture = popupImage.querySelector('.popup__image');
-// const popupImageCaption = popupImage.querySelector('.popup__caption');
 
 function openPopup(popup) {
   popup.classList.add('popup_opened');
@@ -97,7 +88,8 @@ function handleSubmitFormAddCard() {
     link: linkInput.value,
   };
 
-  addCard(configCard);
+  const card = new Card(configCard, '.template-element').generateCard();
+  cardsContainer.prepend(card);
 
   closePopup(popupAddCard);
 
@@ -107,42 +99,12 @@ function handleSubmitFormAddCard() {
   submitButtonFormAddCard.classList.add('form__button_inactive');
 }
 
-function createCard(configCard) {
-  const card = cardBlank.cloneNode(true);
-  const imageCard = card.querySelector('.element__image');
-
-  imageCard.src = configCard.link;
-  imageCard.alt = configCard.name;
-  card.querySelector('.element__title').textContent = configCard.name;
-
-  // const buttonLike = card.querySelector('.element__like');
-  // const buttonDelete = card.querySelector('.element__delete');
-
-  // buttonLike.addEventListener('click', toggleLike);
-  // buttonDelete.addEventListener('click', deleteCard);
-  // imageCard.addEventListener('click', openCard);
-
-  return card;
+function renderCards() {
+  initialCards.forEach((item) => {
+    const card = new Card(item, '.template-element').generateCard();
+    cardsContainer.prepend(card);
+  });
 }
-
-function addCard(configCard) {
-  const card = createCard(configCard);
-  cardsContainer.prepend(card);
-}
-
-// function openCard(event) {
-//   popupImagePicture.src = event.target.src;
-//   popupImageCaption.textContent = event.target.alt;
-//   openPopup(popupImage);
-// }
-
-// function toggleLike(event) {
-//   event.target.classList.toggle('element__like_active');
-// }
-
-// function deleteCard(event) {
-//   event.target.closest('.element').remove();
-// }
 
 // listeners open popup
 popupEditProfileOpenButton.addEventListener('click', () => {
@@ -182,12 +144,5 @@ popupImage.addEventListener('click', () => {
 // listeners submit
 formEditProfile.addEventListener('submit', handleSubmitFormEditProfile);
 formAddCard.addEventListener('submit', handleSubmitFormAddCard);
-
-function renderCards() {
-  initialCards.forEach((item) => {
-    const card = new Card(item, '.template-element').generateCard();
-    cardsContainer.prepend(card);
-  });
-}
 
 renderCards();
