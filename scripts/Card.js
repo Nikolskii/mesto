@@ -1,16 +1,15 @@
 export class Card {
-  constructor(data, template, handleCardClick) {
+  constructor(data, cardSelectors, handleCardClick) {
     this._name = data.name;
     this._link = data.link;
-    this._template = template;
-
+    this._selectors = cardSelectors;
     this._handleCardClick = handleCardClick;
   }
 
   _getTemplate() {
     const card = document
-      .querySelector(this._template)
-      .content.querySelector('.element')
+      .querySelector(this._selectors.template)
+      .content.querySelector(this._selectors.cardBlank)
       .cloneNode(true);
 
     return card;
@@ -19,12 +18,11 @@ export class Card {
   generateCard() {
     this._card = this._getTemplate();
 
-    const imageCard = this._card.querySelector('.element__image');
+    this._card.querySelector(this._selectors.cardImage).src = this._link;
+    this._card.querySelector(this._selectors.cardImage).alt = this._name;
 
-    imageCard.src = this._link;
-    imageCard.alt = this._name;
-
-    this._card.querySelector('.element__title').textContent = this._name;
+    this._card.querySelector(this._selectors.cardTitle).textContent =
+      this._name;
 
     this._setEventListeners();
 
@@ -33,17 +31,19 @@ export class Card {
 
   _setEventListeners() {
     this._card
-      .querySelector('.element__image')
+      .querySelector(this._selectors.cardImage)
       .addEventListener('click', () => {
         this._handleCardClick(this._name, this._link);
       });
 
-    this._card.querySelector('.element__like').addEventListener('click', () => {
-      this._toggleLike();
-    });
+    this._card
+      .querySelector(this._selectors.buttonLike)
+      .addEventListener('click', () => {
+        this._toggleLike();
+      });
 
     this._card
-      .querySelector('.element__delete')
+      .querySelector(this._selectors.buttonDelete)
       .addEventListener('click', () => {
         this._deleteCard();
       });
@@ -51,11 +51,11 @@ export class Card {
 
   _toggleLike() {
     this._card
-      .querySelector('.element__like')
-      .classList.toggle('element__like_active');
+      .querySelector(this._selectors.buttonLike)
+      .classList.toggle(this._selectors.likeActive);
   }
 
   _deleteCard() {
-    this._card.closest('.element').remove();
+    this._card.closest(this._selectors.cardBlank).remove();
   }
 }

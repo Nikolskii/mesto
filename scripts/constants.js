@@ -1,4 +1,4 @@
-export const initialCards = [
+const initialCards = [
   {
     name: 'Архыз',
     link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg',
@@ -24,3 +24,15 @@ export const initialCards = [
     link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg',
   },
 ];
+
+const cardSelectors = {
+  template: '.template-element',
+  cardBlank: '.element',
+  cardImage: '.element__image',
+  cardTitle: '.element__title',
+  buttonLike: '.element__like',
+  buttonDelete: '.element__delete',
+  likeActive: 'element__like_active',
+};
+
+export { initialCards, cardSelectors };

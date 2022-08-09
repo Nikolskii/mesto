@@ -1,4 +1,4 @@
-import { initialCards } from './constants.js';
+import { initialCards, cardSelectors } from './constants.js';
 import { Card } from './Card.js';
 
 // Popups
@@ -97,7 +97,7 @@ function handleSubmitFormAddCard() {
 
   const card = new Card(
     configCard,
-    '.template-element',
+    cardSelectors,
     handleCardClick
   ).generateCard();
   cardsContainer.prepend(card);
@@ -112,11 +112,7 @@ function handleSubmitFormAddCard() {
 
 function renderCards() {
   initialCards.forEach((item) => {
-    const card = new Card(
-      item,
-      '.template-element',
-      handleCardClick
-    ).generateCard();
+    const card = new Card(item, cardSelectors, handleCardClick).generateCard();
     cardsContainer.prepend(card);
   });
 }
