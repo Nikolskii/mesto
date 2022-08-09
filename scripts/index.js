@@ -1,4 +1,4 @@
-import { initialCards } from './initialCards.js';
+import { initialCards } from './constants.js';
 import { Card } from './Card.js';
 
 // Popups
@@ -38,6 +38,13 @@ const placeInput = formAddCard.querySelector('.form__input_type_place');
 const linkInput = formAddCard.querySelector('.form__input_type_link');
 
 const cardsContainer = document.querySelector('.elements');
+
+function handleCardClick(name, link) {
+  popupImage.querySelector('.popup__caption').textContent = name;
+  popupImage.querySelector('.popup__image').src = link;
+
+  openPopup(popupImage);
+}
 
 function openPopup(popup) {
   popup.classList.add('popup_opened');
@@ -88,7 +95,11 @@ function handleSubmitFormAddCard() {
     link: linkInput.value,
   };
 
-  const card = new Card(configCard, '.template-element').generateCard();
+  const card = new Card(
+    configCard,
+    '.template-element',
+    handleCardClick
+  ).generateCard();
   cardsContainer.prepend(card);
 
   closePopup(popupAddCard);
@@ -101,7 +112,11 @@ function handleSubmitFormAddCard() {
 
 function renderCards() {
   initialCards.forEach((item) => {
-    const card = new Card(item, '.template-element').generateCard();
+    const card = new Card(
+      item,
+      '.template-element',
+      handleCardClick
+    ).generateCard();
     cardsContainer.prepend(card);
   });
 }
