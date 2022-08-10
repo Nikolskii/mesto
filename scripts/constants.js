@@ -35,4 +35,15 @@ const cardSelectors = {
   likeActive: 'element__like_active',
 };
 
-export { initialCards, cardSelectors };
+const formSelectors = {
+  formEditProfile: '.form_purpose_edit-profile',
+  formAddCard: '.form_purpose_add-card',
+  formSelector: '.form',
+  inputSelector: '.form__input',
+  submitButtonSelector: '.form__button',
+  inactiveButtonClass: 'form__button_inactive',
+  inputErrorClass: 'form__input_type_error',
+  errorClass: 'form__input-error_active',
+};
+
+export { initialCards, cardSelectors, formSelectors };

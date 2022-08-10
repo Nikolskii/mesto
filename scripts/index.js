@@ -1,5 +1,6 @@
-import { initialCards, cardSelectors } from './constants.js';
+import { initialCards, cardSelectors, formSelectors } from './constants.js';
 import { Card } from './Card.js';
+import { FormValidator } from './FormValidator.js';
 
 // Popups
 const popupEditProfile = document.querySelector('.popup_purpose_edit-profile');
@@ -117,6 +118,16 @@ function renderCards() {
   });
 }
 
+const formEditProfileNew = new FormValidator(
+  formSelectors,
+  '.form_purpose_edit-profile'
+);
+
+const formAddCardNew = new FormValidator(
+  formSelectors,
+  '.form_purpose_add-card'
+);
+
 // listeners open popup
 popupEditProfileOpenButton.addEventListener('click', () => {
   openPopupEditProfile(popupEditProfile);
@@ -157,3 +168,5 @@ formEditProfile.addEventListener('submit', handleSubmitFormEditProfile);
 formAddCard.addEventListener('submit', handleSubmitFormAddCard);
 
 renderCards();
+formEditProfileNew.enableValidation();
+formAddCardNew.enableValidation();
