@@ -1,40 +1,39 @@
 export class FormValidator {
   constructor(formSelectors, form) {
-    this._form = form;
+    this._form = document.querySelector(form);
     this._formSelectors = formSelectors;
   }
 
   enableValidation() {
-    const formNew = document.querySelector(this._form);
-    formNew.addEventListener('submit', () => {
+    this._form.addEventListener('submit', () => {
       this._handleFormSubmit(event);
     });
 
-    this._setEventListeners(formNew);
+    this._setEventListeners();
   }
 
   _handleFormSubmit(event) {
     event.preventDefault();
   }
 
-  _setEventListeners(formNew) {
+  _setEventListeners() {
     const inputList = Array.from(
-      formNew.querySelectorAll(this._formSelectors.inputSelector)
+      this._form.querySelectorAll(this._formSelectors.inputSelector)
     );
-    const button = formNew.querySelector(
+    const button = this._form.querySelector(
       this._formSelectors.submitButtonSelector
     );
 
     inputList.forEach((inputForm) => {
       inputForm.addEventListener('input', () => {
         this._handleFormInput(inputForm);
-        this._setSubmitButtonState(button, formNew);
+        this._setSubmitButtonState(button);
       });
     });
   }
 
-  _setSubmitButtonState(button, formNew) {
-    const isValid = formNew.checkValidity();
+  _setSubmitButtonState(button) {
+    const isValid = this._form.checkValidity();
 
     if (isValid) {
       button.disabled = false;
