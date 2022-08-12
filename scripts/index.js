@@ -17,6 +17,8 @@ import {
   placeInput,
   linkInput,
   cardsContainer,
+  popupImageCaption,
+  popupImageLink,
   cardSelectors,
   formSelectors,
 } from './constants.js';
@@ -24,8 +26,9 @@ import { Card } from './Card.js';
 import { FormValidator } from './FormValidator.js';
 
 function handleCardClick(name, link) {
-  popupImage.querySelector('.popup__caption').textContent = name;
-  popupImage.querySelector('.popup__image').src = link;
+  popupImageCaption.textContent = name;
+  popupImageLink.src = link;
+  popupImageLink.alt = name;
 
   openPopup(popupImage);
 }
@@ -33,17 +36,13 @@ function handleCardClick(name, link) {
 function openPopup(popup) {
   popup.classList.add('popup_opened');
 
-  document.addEventListener('keydown', (event) => {
-    closePopupByKeystrokeEsc(event, popup);
-  });
+  document.addEventListener('keydown', closePopupByEsc);
 }
 
 function closePopup(popup) {
   popup.classList.remove('popup_opened');
 
-  document.removeEventListener('keydown', (event) => {
-    closePopupByKeystrokeEsc(event);
-  });
+  document.removeEventListener('keydown', closePopupByEsc);
 }
 
 function closePopupByClickOnOverlay(event, popup) {
@@ -52,9 +51,11 @@ function closePopupByClickOnOverlay(event, popup) {
   }
 }
 
-function closePopupByKeystrokeEsc(event, popup) {
+function closePopupByEsc(event) {
   if (event.key === 'Escape') {
-    closePopup(popup);
+    const openedPopup = document.querySelector('.popup_opened');
+
+    closePopup(openedPopup);
   }
 }
 

@@ -30,6 +30,9 @@ const popupEditProfile = document.querySelector('.popup_purpose_edit-profile');
 const popupAddCard = document.querySelector('.popup_purpose_add-card');
 const popupImage = document.querySelector('.popup_purpose_open-image');
 
+const popupImageCaption = popupImage.querySelector('.popup__caption');
+const popupImageLink = popupImage.querySelector('.popup__image');
+
 // Open buttons
 const popupEditProfileOpenButton = document.querySelector(
   '.profile__edit-button'
@@ -103,6 +106,8 @@ export {
   placeInput,
   linkInput,
   cardsContainer,
+  popupImageCaption,
+  popupImageLink,
   cardSelectors,
   formSelectors,
 };
