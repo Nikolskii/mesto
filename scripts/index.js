@@ -1,13 +1,11 @@
 import {
   initialCards,
+  popups,
   popupEditProfile,
   popupAddCard,
   popupImage,
   popupEditProfileOpenButton,
   popupAddCardOpenButton,
-  popupEditProfileCloseButton,
-  popupAddCardCloseButton,
-  popupImageCloseButton,
   titleProfile,
   subtitleProfile,
   formEditProfile,
@@ -43,12 +41,6 @@ function closePopup(popup) {
   popup.classList.remove('popup_opened');
 
   document.removeEventListener('keydown', closePopupByEsc);
-}
-
-function closePopupByClickOnOverlay(event, popup) {
-  if (event.target === event.currentTarget) {
-    closePopup(popup);
-  }
 }
 
 function closePopupByEsc(event) {
@@ -115,30 +107,16 @@ popupAddCardOpenButton.addEventListener('click', () => {
   openPopup(popupAddCard);
 });
 
-// listeners close popup
-popupEditProfileCloseButton.addEventListener('click', () => {
-  closePopup(popupEditProfile);
-});
-
-popupAddCardCloseButton.addEventListener('click', () => {
-  closePopup(popupAddCard);
-});
-
-popupImageCloseButton.addEventListener('click', () => {
-  closePopup(popupImage);
-});
-
-//listeners close popup by click on overlay
-popupEditProfile.addEventListener('click', () => {
-  closePopupByClickOnOverlay(event, popupEditProfile);
-});
-
-popupAddCard.addEventListener('click', () => {
-  closePopupByClickOnOverlay(event, popupAddCard);
-});
-
-popupImage.addEventListener('click', () => {
-  closePopupByClickOnOverlay(event, popupImage);
+// listener close popups
+popups.forEach((popup) => {
+  popup.addEventListener('mousedown', (evt) => {
+    if (evt.target.classList.contains('popup_opened')) {
+      closePopup(popup);
+    }
+    if (evt.target.classList.contains('popup__close-button')) {
+      closePopup(popup);
+    }
+  });
 });
 
 // listeners submit

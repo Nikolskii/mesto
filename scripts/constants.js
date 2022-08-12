@@ -47,6 +47,7 @@ const formSelectors = {
 };
 
 // Popups
+const popups = document.querySelectorAll('.popup');
 const popupEditProfile = document.querySelector('.popup_purpose_edit-profile');
 const popupAddCard = document.querySelector('.popup_purpose_add-card');
 const popupImage = document.querySelector('.popup_purpose_open-image');
@@ -59,17 +60,6 @@ const popupEditProfileOpenButton = document.querySelector(
   '.profile__edit-button'
 );
 const popupAddCardOpenButton = document.querySelector('.profile__add-button');
-
-// Close buttons
-const popupEditProfileCloseButton = popupEditProfile.querySelector(
-  '.popup__close-button_place_edit-profile'
-);
-const popupAddCardCloseButton = popupAddCard.querySelector(
-  '.popup__close-button_place_add-card'
-);
-const popupImageCloseButton = popupImage.querySelector(
-  '.popup__close-button_place_open-image'
-);
 
 // Profile texts
 const titleProfile = document.querySelector('.profile__title');
@@ -89,14 +79,12 @@ const cardsContainer = document.querySelector('.elements');
 
 export {
   initialCards,
+  popups,
   popupEditProfile,
   popupAddCard,
   popupImage,
   popupEditProfileOpenButton,
   popupAddCardOpenButton,
-  popupEditProfileCloseButton,
-  popupAddCardCloseButton,
-  popupImageCloseButton,
   titleProfile,
   subtitleProfile,
   formEditProfile,
