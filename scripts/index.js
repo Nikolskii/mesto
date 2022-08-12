@@ -15,6 +15,7 @@ import {
   placeInput,
   linkInput,
   cardsContainer,
+  formValidators,
   popupImageCaption,
   popupImageLink,
   cardSelectors,
@@ -79,19 +80,22 @@ function renderCards() {
   });
 }
 
-const formEditProfileValidation = new FormValidator(
-  formSelectors,
-  formSelectors.formEditProfile
-);
+function enableValidation(config) {
+  const formList = Array.from(document.querySelectorAll(config.formSelector));
 
-const formAddCardValidation = new FormValidator(
-  formSelectors,
-  formSelectors.formAddCard
-);
+  formList.forEach((form) => {
+    const validator = new FormValidator(config, form);
+    const formName = form.getAttribute('name');
+
+    formValidators[formName] = validator;
+
+    validator.enableValidation();
+  });
+}
 
 // listeners open popup
 popupEditProfileOpenButton.addEventListener('click', () => {
-  formEditProfileValidation.resetValidation();
+  formValidators['form-profile'].resetValidation();
 
   nameInput.value = titleProfile.textContent;
   jobInput.value = subtitleProfile.textContent;
@@ -102,7 +106,7 @@ popupEditProfileOpenButton.addEventListener('click', () => {
 popupAddCardOpenButton.addEventListener('click', () => {
   formAddCard.reset();
 
-  formAddCardValidation.resetValidation();
+  formValidators['form-place'].resetValidation();
 
   openPopup(popupAddCard);
 });
@@ -124,5 +128,4 @@ formEditProfile.addEventListener('submit', handleSubmitFormEditProfile);
 formAddCard.addEventListener('submit', handleSubmitFormAddCard);
 
 renderCards();
-formEditProfileValidation.enableValidation();
-formAddCardValidation.enableValidation();
+enableValidation(formSelectors);

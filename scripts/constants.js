@@ -77,6 +77,8 @@ const linkInput = formAddCard.querySelector('.form__input_type_link');
 
 const cardsContainer = document.querySelector('.elements');
 
+const formValidators = {};
+
 export {
   initialCards,
   popups,
@@ -94,6 +96,7 @@ export {
   placeInput,
   linkInput,
   cardsContainer,
+  formValidators,
   popupImageCaption,
   popupImageLink,
   cardSelectors,
