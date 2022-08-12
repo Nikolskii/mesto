@@ -23,9 +23,9 @@ export class FormValidator {
   }
 
   _setEventListeners() {
-    this._inputList.forEach((inputForm) => {
-      inputForm.addEventListener('input', () => {
-        this._handleFormInput(inputForm);
+    this._inputList.forEach((input) => {
+      input.addEventListener('input', () => {
+        this._handleFormInput(input);
         this._setSubmitButtonState();
       });
     });
@@ -43,33 +43,33 @@ export class FormValidator {
     }
   }
 
-  _handleFormInput(inputForm) {
-    if (!inputForm.validity.valid) {
-      this._showInputError(inputForm);
+  _handleFormInput(input) {
+    if (!input.validity.valid) {
+      this._showInputError(input);
     } else {
-      this._hideInputError(inputForm);
+      this._hideInputError(input);
     }
   }
 
-  _showInputError(inputForm) {
-    const errorInputForm = this._searchErrorLabel(inputForm);
+  _showInputError(input) {
+    const errorInput = this._searchErrorLabel(input);
 
-    errorInputForm.textContent = inputForm.validationMessage;
-    errorInputForm.classList.add(this._formSelectors.errorClass);
+    errorInput.textContent = input.validationMessage;
+    errorInput.classList.add(this._formSelectors.errorClass);
 
-    inputForm.classList.add(this._formSelectors.inputErrorClass);
+    input.classList.add(this._formSelectors.inputErrorClass);
   }
 
-  _hideInputError(inputForm) {
-    this._searchErrorLabel(inputForm).textContent = '';
+  _hideInputError(input) {
+    this._searchErrorLabel(input).textContent = '';
 
-    inputForm.classList.remove(this._formSelectors.inputErrorClass);
+    input.classList.remove(this._formSelectors.inputErrorClass);
   }
 
-  _searchErrorLabel(inputForm) {
-    const inputName = inputForm.getAttribute('name');
-    const errorInputForm = document.getElementById(`${inputName}-error`);
+  _searchErrorLabel(input) {
+    const inputName = input.getAttribute('name');
+    const errorInput = document.getElementById(`${inputName}-error`);
 
-    return errorInputForm;
+    return errorInput;
   }
 }
