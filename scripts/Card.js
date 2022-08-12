@@ -4,25 +4,25 @@ export class Card {
     this._link = data.link;
     this._selectors = cardSelectors;
     this._handleCardClick = handleCardClick;
+    this._card = this._getTemplate();
+    this._cardImage = this._card.querySelector(this._selectors.cardImage);
+    this._cardTitle = this._card.querySelector(this._selectors.cardTitle);
+    this._buttonLike = this._card.querySelector(this._selectors.buttonLike);
+    this._buttonDelete = this._card.querySelector(this._selectors.buttonDelete);
   }
 
   _getTemplate() {
-    const card = document
+    return document
       .querySelector(this._selectors.template)
       .content.querySelector(this._selectors.cardBlank)
       .cloneNode(true);
-
-    return card;
   }
 
   generateCard() {
-    this._card = this._getTemplate();
+    this._cardImage.src = this._link;
+    this._cardImage.alt = this._name;
 
-    this._card.querySelector(this._selectors.cardImage).src = this._link;
-    this._card.querySelector(this._selectors.cardImage).alt = this._name;
-
-    this._card.querySelector(this._selectors.cardTitle).textContent =
-      this._name;
+    this._cardTitle.textContent = this._name;
 
     this._setEventListeners();
 
@@ -30,29 +30,21 @@ export class Card {
   }
 
   _setEventListeners() {
-    this._card
-      .querySelector(this._selectors.cardImage)
-      .addEventListener('click', () => {
-        this._handleCardClick(this._name, this._link);
-      });
+    this._cardImage.addEventListener('click', () => {
+      this._handleCardClick(this._name, this._link);
+    });
 
-    this._card
-      .querySelector(this._selectors.buttonLike)
-      .addEventListener('click', () => {
-        this._toggleLike();
-      });
+    this._buttonLike.addEventListener('click', () => {
+      this._toggleLike();
+    });
 
-    this._card
-      .querySelector(this._selectors.buttonDelete)
-      .addEventListener('click', () => {
-        this._deleteCard();
-      });
+    this._buttonDelete.addEventListener('click', () => {
+      this._deleteCard();
+    });
   }
 
   _toggleLike() {
-    this._card
-      .querySelector(this._selectors.buttonLike)
-      .classList.toggle(this._selectors.likeActive);
+    this._buttonLike.classList.toggle(this._selectors.likeActive);
   }
 
   _deleteCard() {
