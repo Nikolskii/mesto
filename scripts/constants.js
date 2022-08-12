@@ -25,6 +25,27 @@ const initialCards = [
   },
 ];
 
+const cardSelectors = {
+  template: '.template-element',
+  cardBlank: '.element',
+  cardImage: '.element__image',
+  cardTitle: '.element__title',
+  buttonLike: '.element__like',
+  buttonDelete: '.element__delete',
+  likeActive: 'element__like_active',
+};
+
+const formSelectors = {
+  formEditProfile: '.form_purpose_edit-profile',
+  formAddCard: '.form_purpose_add-card',
+  formSelector: '.form',
+  inputSelector: '.form__input',
+  submitButtonSelector: '.form__button',
+  inactiveButtonClass: 'form__button_inactive',
+  inputErrorClass: 'form__input_type_error',
+  errorClass: 'form__input-error_active',
+};
+
 // Popups
 const popupEditProfile = document.querySelector('.popup_purpose_edit-profile');
 const popupAddCard = document.querySelector('.popup_purpose_add-card');
@@ -55,37 +76,16 @@ const titleProfile = document.querySelector('.profile__title');
 const subtitleProfile = document.querySelector('.profile__subtitle');
 
 // Edit Profile Form
-const formEditProfile = document.querySelector('.form_purpose_edit-profile');
+const formEditProfile = document.querySelector(formSelectors.formEditProfile);
 const nameInput = formEditProfile.querySelector('.form__input_type_name');
 const jobInput = formEditProfile.querySelector('.form__input_type_job');
 
 // Add Card Form
-const formAddCard = document.querySelector('.form_purpose_add-card');
+const formAddCard = document.querySelector(formSelectors.formAddCard);
 const placeInput = formAddCard.querySelector('.form__input_type_place');
 const linkInput = formAddCard.querySelector('.form__input_type_link');
 
 const cardsContainer = document.querySelector('.elements');
-
-const cardSelectors = {
-  template: '.template-element',
-  cardBlank: '.element',
-  cardImage: '.element__image',
-  cardTitle: '.element__title',
-  buttonLike: '.element__like',
-  buttonDelete: '.element__delete',
-  likeActive: 'element__like_active',
-};
-
-const formSelectors = {
-  formEditProfile: '.form_purpose_edit-profile',
-  formAddCard: '.form_purpose_add-card',
-  formSelector: '.form',
-  inputSelector: '.form__input',
-  submitButtonSelector: '.form__button',
-  inactiveButtonClass: 'form__button_inactive',
-  inputErrorClass: 'form__input_type_error',
-  errorClass: 'form__input-error_active',
-};
 
 export {
   initialCards,

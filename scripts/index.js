@@ -71,31 +71,30 @@ function handleSubmitFormAddCard() {
     link: linkInput.value,
   };
 
-  const card = new Card(
-    configCard,
-    cardSelectors,
-    handleCardClick
-  ).generateCard();
-  cardsContainer.prepend(card);
+  cardsContainer.prepend(createCard(configCard));
 
   closePopup(popupAddCard);
 }
 
+function createCard(item) {
+  const card = new Card(item, cardSelectors, handleCardClick).generateCard();
+  return card;
+}
+
 function renderCards() {
   initialCards.forEach((item) => {
-    const card = new Card(item, cardSelectors, handleCardClick).generateCard();
-    cardsContainer.prepend(card);
+    cardsContainer.prepend(createCard(item));
   });
 }
 
 const formEditProfileValidation = new FormValidator(
   formSelectors,
-  '.form_purpose_edit-profile'
+  formSelectors.formEditProfile
 );
 
 const formAddCardValidation = new FormValidator(
   formSelectors,
-  '.form_purpose_add-card'
+  formSelectors.formAddCard
 );
 
 // listeners open popup
