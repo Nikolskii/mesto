@@ -22,6 +22,14 @@ export class FormValidator {
     event.preventDefault();
   }
 
+  resetValidation() {
+    this._setSubmitButtonState();
+
+    this._inputList.forEach((input) => {
+      this._hideInputError(input);
+    });
+  }
+
   _setEventListeners() {
     this._inputList.forEach((input) => {
       input.addEventListener('input', () => {
