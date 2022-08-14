@@ -4,24 +4,19 @@ export class Card {
     this._link = data.link;
     this._selectors = cardSelectors;
     this._handleCardClick = handleCardClick;
-    this._card = this._getTemplate();
+    this._card = document
+      .querySelector(this._selectors.template)
+      .content.querySelector(this._selectors.cardBlank)
+      .cloneNode(true);
     this._cardImage = this._card.querySelector(this._selectors.cardImage);
     this._cardTitle = this._card.querySelector(this._selectors.cardTitle);
     this._buttonLike = this._card.querySelector(this._selectors.buttonLike);
     this._buttonDelete = this._card.querySelector(this._selectors.buttonDelete);
   }
 
-  _getTemplate() {
-    return document
-      .querySelector(this._selectors.template)
-      .content.querySelector(this._selectors.cardBlank)
-      .cloneNode(true);
-  }
-
   generateCard() {
     this._cardImage.src = this._link;
     this._cardImage.alt = this._name;
-
     this._cardTitle.textContent = this._name;
 
     this._setEventListeners();
