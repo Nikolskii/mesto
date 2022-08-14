@@ -114,10 +114,10 @@ popupAddCardOpenButton.addEventListener('click', () => {
 // listener close popups
 popups.forEach((popup) => {
   popup.addEventListener('mousedown', (evt) => {
-    if (evt.target.classList.contains('popup_opened')) {
-      closePopup(popup);
-    }
-    if (evt.target.classList.contains('popup__close-button')) {
+    if (
+      evt.target.classList.contains('popup_opened') ||
+      evt.target.classList.contains('popup__close-button')
+    ) {
       closePopup(popup);
     }
   });
