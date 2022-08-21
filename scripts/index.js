@@ -57,11 +57,11 @@ function handleCardClick(name, link) {
 //   document.addEventListener('keydown', closePopupByEsc);
 // }
 
-function closePopup(popup) {
-  popup.classList.remove('popup_opened');
+// function closePopup(popup) {
+//   popup.classList.remove('popup_opened');
 
-  document.removeEventListener('keydown', closePopupByEsc);
-}
+//   document.removeEventListener('keydown', closePopupByEsc);
+// }
 
 // function closePopupByEsc(event) {
 //   if (event.key === 'Escape') {
