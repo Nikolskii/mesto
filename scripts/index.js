@@ -23,6 +23,21 @@ import {
 } from './constants.js';
 import { Card } from './Card.js';
 import { FormValidator } from './FormValidator.js';
+import { Section } from './Section.js';
+
+const cardList = new Section(
+  {
+    data: initialCards,
+    renderer: (initialCards) => {
+      const card = new Card(initialCards, cardSelectors, handleCardClick);
+
+      const cardElement = card.generateCard();
+
+      cardList.addItem(cardElement);
+    },
+  },
+  cardsContainer
+);
 
 function handleCardClick(name, link) {
   popupImageCaption.textContent = name;
@@ -74,12 +89,6 @@ function createCard(item) {
   return card;
 }
 
-function renderCards() {
-  initialCards.forEach((item) => {
-    cardsContainer.prepend(createCard(item));
-  });
-}
-
 function enableValidation(config) {
   const formList = Array.from(document.querySelectorAll(config.formSelector));
 
@@ -127,5 +136,6 @@ popups.forEach((popup) => {
 formEditProfile.addEventListener('submit', handleSubmitFormEditProfile);
 formAddCard.addEventListener('submit', handleSubmitFormAddCard);
 
-renderCards();
 enableValidation(formSelectors);
+
+cardList.renderItem();
