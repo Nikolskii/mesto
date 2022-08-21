@@ -21,9 +21,13 @@ import {
   cardSelectors,
   formSelectors,
 } from './constants.js';
-import { Card } from './Card.js';
-import { FormValidator } from './FormValidator.js';
-import { Section } from './Section.js';
+import Card from './Card.js';
+import FormValidator from './FormValidator.js';
+import Section from './Section.js';
+import Popup from './Popup.js';
+
+const testPopup = new Popup(popupEditProfile);
+testPopup.open();
 
 const cardList = new Section(
   {
@@ -47,11 +51,11 @@ function handleCardClick(name, link) {
   openPopup(popupImage);
 }
 
-function openPopup(popup) {
-  popup.classList.add('popup_opened');
+// function openPopup(popup) {
+//   popup.classList.add('popup_opened');
 
-  document.addEventListener('keydown', closePopupByEsc);
-}
+//   document.addEventListener('keydown', closePopupByEsc);
+// }
 
 function closePopup(popup) {
   popup.classList.remove('popup_opened');
@@ -59,13 +63,13 @@ function closePopup(popup) {
   document.removeEventListener('keydown', closePopupByEsc);
 }
 
-function closePopupByEsc(event) {
-  if (event.key === 'Escape') {
-    const openedPopup = document.querySelector('.popup_opened');
+// function closePopupByEsc(event) {
+//   if (event.key === 'Escape') {
+//     const openedPopup = document.querySelector('.popup_opened');
 
-    closePopup(openedPopup);
-  }
-}
+//     closePopup(openedPopup);
+//   }
+// }
 
 function handleSubmitFormEditProfile() {
   titleProfile.textContent = nameInput.value;
