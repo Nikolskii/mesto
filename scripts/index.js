@@ -1,6 +1,5 @@
 import {
   initialCards,
-  popups,
   popupEditProfile,
   popupAddCard,
   popupImage,
@@ -16,15 +15,12 @@ import {
   linkInput,
   cardsContainer,
   formValidators,
-  popupImageCaption,
-  popupImageLink,
   cardSelectors,
   formSelectors,
 } from './constants.js';
 import Card from './Card.js';
 import FormValidator from './FormValidator.js';
 import Section from './Section.js';
-import Popup from './Popup.js';
 import PopupWithImage from './PopupWithImage.js';
 
 const popupOpenImage = new PopupWithImage(popupImage);
