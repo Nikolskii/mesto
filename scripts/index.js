@@ -25,15 +25,21 @@ import Card from './Card.js';
 import FormValidator from './FormValidator.js';
 import Section from './Section.js';
 import Popup from './Popup.js';
+import PopupWithImage from './PopupWithImage.js';
 
-const testPopup = new Popup(popupEditProfile);
-testPopup.open();
+const popupOpenImage = new PopupWithImage(popupImage);
 
 const cardList = new Section(
   {
     data: initialCards,
     renderer: (initialCards) => {
-      const card = new Card(initialCards, cardSelectors, handleCardClick);
+      const card = new Card({
+        data: initialCards,
+        cardSelectors,
+        handleCardClick: () => {
+          popupOpenImage.open(initialCards.name, initialCards.link);
+        },
+      });
 
       const cardElement = card.generateCard();
 
@@ -42,34 +48,6 @@ const cardList = new Section(
   },
   cardsContainer
 );
-
-function handleCardClick(name, link) {
-  popupImageCaption.textContent = name;
-  popupImageLink.src = link;
-  popupImageLink.alt = name;
-
-  openPopup(popupImage);
-}
-
-// function openPopup(popup) {
-//   popup.classList.add('popup_opened');
-
-//   document.addEventListener('keydown', closePopupByEsc);
-// }
-
-// function closePopup(popup) {
-//   popup.classList.remove('popup_opened');
-
-//   document.removeEventListener('keydown', closePopupByEsc);
-// }
-
-// function closePopupByEsc(event) {
-//   if (event.key === 'Escape') {
-//     const openedPopup = document.querySelector('.popup_opened');
-
-//     closePopup(openedPopup);
-//   }
-// }
 
 function handleSubmitFormEditProfile() {
   titleProfile.textContent = nameInput.value;
@@ -123,18 +101,6 @@ popupAddCardOpenButton.addEventListener('click', () => {
 
   openPopup(popupAddCard);
 });
-
-// listener close popups
-// popups.forEach((popup) => {
-//   popup.addEventListener('mousedown', (evt) => {
-//     if (
-//       evt.target.classList.contains('popup_opened') ||
-//       evt.target.classList.contains('popup__close-button')
-//     ) {
-//       closePopup(popup);
-//     }
-//   });
-// });
 
 // listeners submit
 formEditProfile.addEventListener('submit', handleSubmitFormEditProfile);
