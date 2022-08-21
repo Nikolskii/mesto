@@ -125,16 +125,16 @@ popupAddCardOpenButton.addEventListener('click', () => {
 });
 
 // listener close popups
-popups.forEach((popup) => {
-  popup.addEventListener('mousedown', (evt) => {
-    if (
-      evt.target.classList.contains('popup_opened') ||
-      evt.target.classList.contains('popup__close-button')
-    ) {
-      closePopup(popup);
-    }
-  });
-});
+// popups.forEach((popup) => {
+//   popup.addEventListener('mousedown', (evt) => {
+//     if (
+//       evt.target.classList.contains('popup_opened') ||
+//       evt.target.classList.contains('popup__close-button')
+//     ) {
+//       closePopup(popup);
+//     }
+//   });
+// });
 
 // listeners submit
 formEditProfile.addEventListener('submit', handleSubmitFormEditProfile);
