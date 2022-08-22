@@ -22,6 +22,7 @@ import Card from './Card.js';
 import FormValidator from './FormValidator.js';
 import Section from './Section.js';
 import PopupWithImage from './PopupWithImage.js';
+import popupWithForm from './PopupWithForm.js';
 
 const popupOpenImage = new PopupWithImage(popupImage);
 
@@ -37,34 +38,47 @@ const cardList = new Section(
         },
       });
 
-      const cardElement = card.generateCard();
-
-      cardList.addItem(cardElement);
+      cardList.addItem(card.generateCard());
     },
   },
   cardsContainer
 );
 
+const popupAddCardForm = new popupWithForm({
+  popup: popupAddCard,
+  handleSubmitForm: (formData) => {
+    const card = new Card({
+      data: formData,
+      cardSelectors,
+      handleCardClick: () => {
+        popupOpenImage.open(initialCards.name, initialCards.link);
+      },
+    });
+
+    cardList.addItem(card.generateCard());
+  },
+});
+
+// function handleSubmitFormAddCard() {
+//   const configCard = {
+//     name: placeInput.value,
+//     link: linkInput.value,
+//   };
+
+//   cardsContainer.prepend(createCard(configCard));
+
+//   closePopup(popupAddCard);
+// }
+
+// function createCard(item) {
+//   const card = new Card(item, cardSelectors, handleCardClick).generateCard();
+//   return card;
+// }
+
 function handleSubmitFormEditProfile() {
   titleProfile.textContent = nameInput.value;
   subtitleProfile.textContent = jobInput.value;
   closePopup(popupEditProfile);
-}
-
-function handleSubmitFormAddCard() {
-  const configCard = {
-    name: placeInput.value,
-    link: linkInput.value,
-  };
-
-  cardsContainer.prepend(createCard(configCard));
-
-  closePopup(popupAddCard);
-}
-
-function createCard(item) {
-  const card = new Card(item, cardSelectors, handleCardClick).generateCard();
-  return card;
 }
 
 function enableValidation(config) {
@@ -87,7 +101,7 @@ popupEditProfileOpenButton.addEventListener('click', () => {
   nameInput.value = titleProfile.textContent;
   jobInput.value = subtitleProfile.textContent;
 
-  openPopup(popupEditProfile);
+  popupEditProfileForm.open();
 });
 
 popupAddCardOpenButton.addEventListener('click', () => {
@@ -95,12 +109,12 @@ popupAddCardOpenButton.addEventListener('click', () => {
 
   formValidators['form-place'].resetValidation();
 
-  openPopup(popupAddCard);
+  popupAddCardForm.open();
 });
 
 // listeners submit
 formEditProfile.addEventListener('submit', handleSubmitFormEditProfile);
-formAddCard.addEventListener('submit', handleSubmitFormAddCard);
+// formAddCard.addEventListener('submit', handleSubmitFormAddCard);
 
 enableValidation(formSelectors);
 

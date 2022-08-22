@@ -1,4 +1,0 @@
-разобраться с передачей класса popup_opened в
- open() {
-    this._popup.classList.add('popup_opened')
-  }
