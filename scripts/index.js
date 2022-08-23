@@ -28,14 +28,8 @@ import Popup from './Popup.js';
 import UserInfo from './UserInfo.js';
 
 const popupOpenImage = new PopupWithImage(popupImage);
-const popupEditProfileForm = new Popup(popupEditProfile);
-// const userInfo = new UserInfo();
 
-function handleSubmitFormEditProfile() {
-  titleProfile.textContent = nameInput.value;
-  subtitleProfile.textContent = jobInput.value;
-  closePopup(popupEditProfile);
-}
+const userInfo = new UserInfo(userData);
 
 const cardList = new Section(
   {
@@ -75,11 +69,17 @@ const popupAddCardForm = new popupWithForm({
   },
 });
 
-function handleSubmitFormEditProfile() {
-  titleProfile.textContent = nameInput.value;
-  subtitleProfile.textContent = jobInput.value;
-  closePopup(popupEditProfile);
-}
+const popupEditProfileForm = new popupWithForm({
+  popup: popupEditProfile,
+  handleSubmitForm: (formData) => {
+    const configProfile = {
+      name: formData.form__input_type_name,
+      description: formData.form__input_type_job,
+    };
+
+    userInfo.setUserInfo(configProfile);
+  },
+});
 
 function enableValidation(config) {
   const formList = Array.from(document.querySelectorAll(config.formSelector));
@@ -98,8 +98,10 @@ function enableValidation(config) {
 popupEditProfileOpenButton.addEventListener('click', () => {
   formValidators['form-profile'].resetValidation();
 
-  nameInput.value = titleProfile.textContent;
-  jobInput.value = subtitleProfile.textContent;
+  const userData = userInfo.getUserInfo();
+
+  nameInput.value = userData.name;
+  jobInput.value = userData.description;
 
   popupEditProfileForm.open();
 });
@@ -113,7 +115,13 @@ popupAddCardOpenButton.addEventListener('click', () => {
 });
 
 // listeners submit
-formEditProfile.addEventListener('submit', handleSubmitFormEditProfile);
+// formEditProfile.addEventListener('submit', handleSubmitFormEditProfile);
+
+// function handleSubmitFormEditProfile() {
+//   titleProfile.textContent = nameInput.value;
+//   subtitleProfile.textContent = jobInput.value;
+//   closePopup(popupEditProfile);
+// }
 
 enableValidation(formSelectors);
 

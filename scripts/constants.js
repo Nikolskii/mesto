@@ -61,9 +61,10 @@ const popupAddCardOpenButton = document.querySelector('.profile__add-button');
 const titleProfile = document.querySelector('.profile__title');
 const subtitleProfile = document.querySelector('.profile__subtitle');
 
+// User info
 const userData = {
   userName: document.querySelector('.profile__title'),
-  userInfo: document.querySelector('.profile__subtitle'),
+  userDescription: document.querySelector('.profile__subtitle'),
 };
 
 // Edit Profile Form
