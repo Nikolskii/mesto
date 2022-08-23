@@ -61,6 +61,11 @@ const popupAddCardOpenButton = document.querySelector('.profile__add-button');
 const titleProfile = document.querySelector('.profile__title');
 const subtitleProfile = document.querySelector('.profile__subtitle');
 
+const userData = {
+  userName: document.querySelector('.profile__title'),
+  userInfo: document.querySelector('.profile__subtitle'),
+};
+
 // Edit Profile Form
 const formEditProfile = document.querySelector(formSelectors.formEditProfile);
 const nameInput = formEditProfile.querySelector('.form__input_type_name');
@@ -94,4 +99,5 @@ export {
   formValidators,
   cardSelectors,
   formSelectors,
+  userData,
 };
