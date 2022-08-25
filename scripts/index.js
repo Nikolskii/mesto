@@ -5,14 +5,8 @@ import {
   popupImage,
   popupEditProfileOpenButton,
   popupAddCardOpenButton,
-  titleProfile,
-  subtitleProfile,
-  formEditProfile,
   nameInput,
   jobInput,
-  formAddCard,
-  placeInput,
-  linkInput,
   cardsContainer,
   formValidators,
   cardSelectors,
@@ -24,7 +18,6 @@ import FormValidator from './FormValidator.js';
 import Section from './Section.js';
 import PopupWithImage from './PopupWithImage.js';
 import popupWithForm from './PopupWithForm.js';
-import Popup from './Popup.js';
 import UserInfo from './UserInfo.js';
 
 const popupOpenImage = new PopupWithImage(popupImage);
@@ -81,6 +74,10 @@ const popupEditProfileForm = new popupWithForm({
   },
 });
 
+popupAddCardForm.setEventListeners();
+
+popupEditProfileForm.setEventListeners();
+
 function enableValidation(config) {
   const formList = Array.from(document.querySelectorAll(config.formSelector));
 
@@ -94,7 +91,6 @@ function enableValidation(config) {
   });
 }
 
-// listeners open popup
 popupEditProfileOpenButton.addEventListener('click', () => {
   formValidators['form-profile'].resetValidation();
 
@@ -107,21 +103,10 @@ popupEditProfileOpenButton.addEventListener('click', () => {
 });
 
 popupAddCardOpenButton.addEventListener('click', () => {
-  formAddCard.reset();
-
   formValidators['form-place'].resetValidation();
 
   popupAddCardForm.open();
 });
-
-// listeners submit
-// formEditProfile.addEventListener('submit', handleSubmitFormEditProfile);
-
-// function handleSubmitFormEditProfile() {
-//   titleProfile.textContent = nameInput.value;
-//   subtitleProfile.textContent = jobInput.value;
-//   closePopup(popupEditProfile);
-// }
 
 enableValidation(formSelectors);
 

@@ -57,10 +57,6 @@ const popupEditProfileOpenButton = document.querySelector(
 );
 const popupAddCardOpenButton = document.querySelector('.profile__add-button');
 
-// Profile texts
-const titleProfile = document.querySelector('.profile__title');
-const subtitleProfile = document.querySelector('.profile__subtitle');
-
 // User info
 const userData = {
   userName: document.querySelector('.profile__title'),
@@ -71,11 +67,6 @@ const userData = {
 const formEditProfile = document.querySelector(formSelectors.formEditProfile);
 const nameInput = formEditProfile.querySelector('.form__input_type_name');
 const jobInput = formEditProfile.querySelector('.form__input_type_job');
-
-// Add Card Form
-const formAddCard = document.querySelector(formSelectors.formAddCard);
-const placeInput = formAddCard.querySelector('.form__input_type_place');
-const linkInput = formAddCard.querySelector('.form__input_type_link');
 
 const cardsContainer = document.querySelector('.elements');
 
@@ -88,14 +79,8 @@ export {
   popupImage,
   popupEditProfileOpenButton,
   popupAddCardOpenButton,
-  titleProfile,
-  subtitleProfile,
-  formEditProfile,
   nameInput,
   jobInput,
-  formAddCard,
-  placeInput,
-  linkInput,
   cardsContainer,
   formValidators,
   cardSelectors,
