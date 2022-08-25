@@ -17,7 +17,7 @@ import Card from '../components/Card.js';
 import FormValidator from '../components/FormValidator.js';
 import Section from '../components/Section.js';
 import PopupWithImage from '../components/PopupWithImage.js';
-import popupWithForm from '../components/PopupWithForm.js';
+import PopupWithForm from '../components/PopupWithForm.js';
 import UserInfo from '../components/UserInfo.js';
 
 const popupOpenImage = new PopupWithImage(popupImage);
@@ -42,7 +42,7 @@ const cardList = new Section(
   cardsContainer
 );
 
-const popupAddCardForm = new popupWithForm({
+const popupAddCardForm = new PopupWithForm({
   popup: popupAddCard,
   handleSubmitForm: (formData) => {
     const configCard = {
@@ -62,7 +62,7 @@ const popupAddCardForm = new popupWithForm({
   },
 });
 
-const popupEditProfileForm = new popupWithForm({
+const popupEditProfileForm = new PopupWithForm({
   popup: popupEditProfile,
   handleSubmitForm: (formData) => {
     const configProfile = {
