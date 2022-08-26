@@ -1,3 +1,5 @@
+import '../pages/index.css';
+
 import {
   initialCards,
   popupEditProfile,
@@ -12,7 +14,8 @@ import {
   cardSelectors,
   formSelectors,
   userData,
-} from '../utils/constants.js';
+} from '../utils/constants';
+
 import Card from '../components/Card.js';
 import FormValidator from '../components/FormValidator.js';
 import Section from '../components/Section.js';
