@@ -4,10 +4,10 @@
   display: grid;
   max-width: 282px;
   grid-template-columns: repeat(2, max-content);
-  grid-template-rows: repeat(2, auto);
+  grid-template-rows: repeat(3, auto);
   border-radius: 10px;
   overflow: hidden;
   align-items: center;
-  padding-bottom: 25px;
+  padding-bottom: 20px;
   position: relative;
 }
