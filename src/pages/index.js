@@ -10,7 +10,6 @@ import {
   nameInput,
   jobInput,
   cardsContainer,
-  formValidators,
   cardSelectors,
   formSelectors,
   userData,

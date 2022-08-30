@@ -70,8 +70,6 @@ const jobInput = formEditProfile.querySelector('.form__input_type_job');
 
 const cardsContainer = document.querySelector('.elements');
 
-const formValidators = {};
-
 export {
   initialCards,
   popupEditProfile,
@@ -82,7 +80,6 @@ export {
   nameInput,
   jobInput,
   cardsContainer,
-  formValidators,
   cardSelectors,
   formSelectors,
   userData,
