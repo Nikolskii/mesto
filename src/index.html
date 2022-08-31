@@ -16,8 +16,9 @@
     <section class="profile">
       <img class="profile__avatar" src="./images/profile-avatar.jpg" alt="Аватар">
       <!-- <img class="profile__avatar" src="<%=require('./images/profile-avatar.jpg')%>" alt="Аватар"> -->
-        <h1 class="profile__title">Жак-Ив Кусто</h1>
-        <button class="profile__edit-button" type="button" aria-label="Редактировать профиль"></button>
+      <button class="profile__update-button"></button>
+      <h1 class="profile__title">Жак-Ив Кусто</h1>
+      <button class="profile__edit-button" type="button" aria-label="Редактировать профиль"></button>
       <p class="profile__subtitle">Исследователь океана</p>
       <button class="profile__add-button" type="button" aria-label="Добавить фотографию"></button>
     </section>
@@ -73,7 +74,7 @@
       <button class="popup__close-button" type="button" aria-label="Закрыть"></button> 
     </div>
   </section>
-  <section class="popup popup_purpose_update-avatar popup_opened" aria-label="Обновить аватар">
+  <section class="popup popup_purpose_update-avatar" aria-label="Обновить аватар">
     <div class="popup__container">
       <h2 class="popup__title">Обновить аватар</h2>
       <form class="form form_purpose_update-avatar" name="update-avatar" novalidate>
@@ -83,6 +84,7 @@
           <button class="form__button form__button_inactive" type="submit" value="Сохранить" disabled>Сохранить</button>
         </fieldset>
       </form>
+      <button class="popup__close-button" type="button" aria-label="Закрыть"></button> 
     </div>
   </section>
     <template class="template-element">
