@@ -5,8 +5,10 @@ import {
   popupEditProfile,
   popupAddCard,
   popupImage,
+  popupUpdateAvatar,
   popupEditProfileOpenButton,
   popupAddCardOpenButton,
+  popupUpdateAvatarOpenButton,
   nameInput,
   jobInput,
   cardsContainer,
@@ -71,9 +73,17 @@ const popupEditProfileForm = new PopupWithForm({
   },
 });
 
+const popupUpdateAvatarForm = new PopupWithForm({
+  popup: popupUpdateAvatar,
+  handleSubmitForm: (formData) => {
+    userData.userAvatar.src = Object.values(formData);
+  },
+});
+
 popupOpenImage.setEventListeners();
 popupAddCardForm.setEventListeners();
 popupEditProfileForm.setEventListeners();
+popupUpdateAvatarForm.setEventListeners();
 
 const formEditProfileValidation = new FormValidator(
   formSelectors,
@@ -83,6 +93,11 @@ const formEditProfileValidation = new FormValidator(
 const formAddCardValidation = new FormValidator(
   formSelectors,
   formSelectors.formAddCard
+);
+
+const formUpdateAvatarValidation = new FormValidator(
+  formSelectors,
+  formSelectors.formUpdateAvatar
 );
 
 popupEditProfileOpenButton.addEventListener('click', () => {
@@ -102,7 +117,14 @@ popupAddCardOpenButton.addEventListener('click', () => {
   popupAddCardForm.open();
 });
 
+popupUpdateAvatarOpenButton.addEventListener('click', () => {
+  formUpdateAvatarValidation.resetValidation();
+
+  popupUpdateAvatarForm.open();
+});
+
 cardList.renderItems();
 
 formEditProfileValidation.enableValidation();
 formAddCardValidation.enableValidation();
+formUpdateAvatarValidation.enableValidation();

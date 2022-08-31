@@ -38,6 +38,7 @@ const cardSelectors = {
 const formSelectors = {
   formEditProfile: '.form_purpose_edit-profile',
   formAddCard: '.form_purpose_add-card',
+  formUpdateAvatar: '.form_purpose_update-avatar',
   formSelector: '.form',
   inputSelector: '.form__input',
   submitButtonSelector: '.form__button',
@@ -50,17 +51,24 @@ const formSelectors = {
 const popupEditProfile = document.querySelector('.popup_purpose_edit-profile');
 const popupAddCard = document.querySelector('.popup_purpose_add-card');
 const popupImage = document.querySelector('.popup_purpose_open-image');
+const popupUpdateAvatar = document.querySelector(
+  '.popup_purpose_update-avatar'
+);
 
 // Open buttons
 const popupEditProfileOpenButton = document.querySelector(
   '.profile__edit-button'
 );
 const popupAddCardOpenButton = document.querySelector('.profile__add-button');
+const popupUpdateAvatarOpenButton = document.querySelector(
+  '.profile__update-button'
+);
 
 // User info
 const userData = {
   userName: document.querySelector('.profile__title'),
   userDescription: document.querySelector('.profile__subtitle'),
+  userAvatar: document.querySelector('.profile__avatar'),
 };
 
 // Edit Profile Form
@@ -75,8 +83,10 @@ export {
   popupEditProfile,
   popupAddCard,
   popupImage,
+  popupUpdateAvatar,
   popupEditProfileOpenButton,
   popupAddCardOpenButton,
+  popupUpdateAvatarOpenButton,
   nameInput,
   jobInput,
   cardsContainer,

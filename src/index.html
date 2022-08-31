@@ -74,26 +74,28 @@
       <button class="popup__close-button" type="button" aria-label="Закрыть"></button> 
     </div>
   </section>
+  
   <section class="popup popup_purpose_update-avatar" aria-label="Обновить аватар">
     <div class="popup__container">
       <h2 class="popup__title">Обновить аватар</h2>
       <form class="form form_purpose_update-avatar" name="update-avatar" novalidate>
         <fieldset class="form__fieldset">
           <input class="form__input form__input_type_link-avatar" type="url" name="form__input_type_link-avatar" placeholder="Ссылка на картинку" id="form__input_type_link-avatar" required>
-          <span class="form__input-error" id="form__input_type_link-error"></span>
+          <span class="form__input-error" id="form__input_type_link-avatar-error"></span>
           <button class="form__button form__button_inactive" type="submit" value="Сохранить" disabled>Сохранить</button>
         </fieldset>
       </form>
       <button class="popup__close-button" type="button" aria-label="Закрыть"></button> 
     </div>
   </section>
+
     <template class="template-element">
     <article class="element">
       <img class="element__image" src="#" alt="alt">
       <h2 class="element__title"></h2>
       <button class="element__delete" type="button" aria-label="Удалить"></button>
       <button class="element__like" type="button" aria-label="Нравится"></button>
-      <p class="element__like-counter">5</p>
+      <p class="element__like-counter">0</p>
     </article>
   </template>
   <script defer type="module" src="./pages/index.js"></script>
