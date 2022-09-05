@@ -1,4 +1,4 @@
-import '../pages/index.css';
+// import '../pages/index.css';
 
 import {
   initialCards,
@@ -16,17 +16,34 @@ import {
   formSelectors,
   userData,
 } from '../utils/constants.js';
-
 import Card from '../components/Card.js';
 import FormValidator from '../components/FormValidator.js';
 import Section from '../components/Section.js';
 import PopupWithImage from '../components/PopupWithImage.js';
 import PopupWithForm from '../components/PopupWithForm.js';
 import UserInfo from '../components/UserInfo.js';
+import Api from '../components/Api.js';
 
 const popupOpenImage = new PopupWithImage(popupImage);
 
 const userInfo = new UserInfo(userData);
+
+const api = new Api({
+  baseUrl: 'https://mesto.nomoreparties.co/v1/cohort-50',
+  headers: {
+    authorization: 'b1e377f1-cd98-498c-a108-b0af0056347c',
+    'Content-Type': 'application/json',
+  },
+});
+
+api
+  .getUserInfo()
+  .then((res) => {
+    userInfo.setUserInfo(res);
+  })
+  .catch((err) => {
+    console.log(err);
+  });
 
 function createCard(dataCard) {
   const card = new Card({
@@ -66,7 +83,7 @@ const popupEditProfileForm = new PopupWithForm({
   handleSubmitForm: (formData) => {
     const configProfile = {
       name: formData.form__input_type_name,
-      description: formData.form__input_type_job,
+      about: formData.form__input_type_job,
     };
 
     userInfo.setUserInfo(configProfile);
@@ -106,7 +123,7 @@ popupEditProfileOpenButton.addEventListener('click', () => {
   const userData = userInfo.getUserInfo();
 
   nameInput.value = userData.name;
-  jobInput.value = userData.description;
+  jobInput.value = userData.about;
 
   popupEditProfileForm.open();
 });

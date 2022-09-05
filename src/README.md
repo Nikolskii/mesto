@@ -1,7 +1,7 @@
 # Mesto
-## Проектная работа №8 Яндекс.Практикум  
+## Проектная работа №9 Яндекс.Практикум  
 
-[Ссылка на GitHub Pages](https://nikolskii.github.io/mesto/index.html)
+[Ссылка на GitHub Pages](https://nikolskii.github.io/mesto/)
 
 Mesto — интерактивная страница, куда можно добавлять фотографии, удалять их и ставить лайки.
 

@@ -9,13 +9,14 @@
 </head>
 <body class="page">
   <header class="header">
-    <!-- <img class="header__logo" src="./images/header-logo.svg" alt="Место"> -->
-    <img class="header__logo" src="<%=require('./images/header-logo.svg')%>" alt="Место">
+    <img class="header__logo" src="./images/header-logo.svg" alt="Место">
+    <!-- <img class="header__logo" src="<%=require('./images/header-logo.svg')%>" alt="Место"> -->
   </header>
   <main class="content">
     <section class="profile">
+      <img class="profile__avatar" src="#" alt="Аватар">
       <!-- <img class="profile__avatar" src="./images/profile-avatar.jpg" alt="Аватар"> -->
-      <img class="profile__avatar" src="<%=require('./images/profile-avatar.jpg')%>" alt="Аватар">
+      <!-- <img class="profile__avatar" src="<%=require('./images/profile-avatar.jpg')%>" alt="Аватар"> -->
       <button class="profile__update-button"></button>
       <h1 class="profile__title">Жак-Ив Кусто</h1>
       <button class="profile__edit-button" type="button" aria-label="Редактировать профиль"></button>
@@ -96,6 +97,6 @@
       <p class="element__like-counter">0</p>
     </article>
   </template>
-  <!-- <script defer type="module" src="./pages/index.js"></script> -->
+  <script defer type="module" src="./pages/index.js"></script>
 </body>
 </html>

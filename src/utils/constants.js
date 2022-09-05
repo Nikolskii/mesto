@@ -67,7 +67,7 @@ const popupUpdateAvatarOpenButton = document.querySelector(
 // User info
 const userData = {
   userName: document.querySelector('.profile__title'),
-  userDescription: document.querySelector('.profile__subtitle'),
+  userAbout: document.querySelector('.profile__subtitle'),
   userAvatar: document.querySelector('.profile__avatar'),
 };
 
