@@ -68,7 +68,7 @@ const cardList = new Section(
 );
 
 api
-  .getCards()
+  .getInitialCards()
   .then((res) => {
     cardList.renderItems(res);
   })
