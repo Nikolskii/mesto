@@ -1,7 +1,7 @@
 // import '../pages/index.css';
 
 import {
-  initialCards,
+  // initialCards,
   popupEditProfile,
   popupAddCard,
   popupImage,
@@ -58,13 +58,23 @@ function createCard(dataCard) {
 
 const cardList = new Section(
   {
-    data: initialCards,
+    data: [],
+    // data: initialCards,
     renderer: (initialCards) => {
       createCard(initialCards);
     },
   },
   cardsContainer
 );
+
+api
+  .getCards()
+  .then((res) => {
+    cardList.renderItems(res);
+  })
+  .catch((err) => {
+    console.log(err);
+  });
 
 const popupAddCardForm = new PopupWithForm({
   popup: popupAddCard,
@@ -140,7 +150,7 @@ popupUpdateAvatarOpenButton.addEventListener('click', () => {
   popupUpdateAvatarForm.open();
 });
 
-cardList.renderItems();
+// cardList.renderItems();
 
 formEditProfileValidation.enableValidation();
 formAddCardValidation.enableValidation();
