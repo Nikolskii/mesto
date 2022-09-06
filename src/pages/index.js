@@ -37,7 +37,7 @@ const api = new Api({
 });
 
 api
-  .getUserInfo()
+  .downloadUserInfo()
   .then((res) => {
     userInfo.setUserInfo(res);
   })
@@ -70,7 +70,7 @@ const cardList = new Section(
 api
   .getInitialCards()
   .then((res) => {
-    cardList.renderItems(res);
+    cardList.renderItems(res.reverse());
   })
   .catch((err) => {
     console.log(err);
@@ -84,6 +84,8 @@ const popupAddCardForm = new PopupWithForm({
       link: formData.form__input_type_link,
     };
 
+    api.addCard(configCard.name, configCard.link);
+
     createCard(configCard);
   },
 });
@@ -96,7 +98,12 @@ const popupEditProfileForm = new PopupWithForm({
       about: formData.form__input_type_job,
     };
 
-    userInfo.setUserInfo(configProfile);
+    api.updateUserInfo(configProfile.name, configProfile.about);
+
+    userInfo.setUserInfo({
+      name: configProfile.name,
+      about: configProfile.about,
+    });
   },
 });
 
@@ -149,8 +156,6 @@ popupUpdateAvatarOpenButton.addEventListener('click', () => {
 
   popupUpdateAvatarForm.open();
 });
-
-// cardList.renderItems();
 
 formEditProfileValidation.enableValidation();
 formAddCardValidation.enableValidation();

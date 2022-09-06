@@ -33,6 +33,7 @@ const cardSelectors = {
   buttonLike: '.element__like',
   buttonDelete: '.element__delete',
   likeActive: 'element__like_active',
+  likeCounter: '.element__like-counter',
 };
 
 const formSelectors = {

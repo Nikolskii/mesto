@@ -4,7 +4,7 @@ export default class Api {
     this._headers = headers;
   }
 
-  getUserInfo() {
+  downloadUserInfo() {
     return fetch(`${this._baseUrl}/users/me`, {
       headers: this._headers,
     }).then((res) => {
@@ -25,6 +25,28 @@ export default class Api {
       } else {
         return Promise.reject(`Ошибка: ${res.status}`);
       }
+    });
+  }
+
+  updateUserInfo(name, about) {
+    return fetch(`${this._baseUrl}/users/me`, {
+      method: 'PATCH',
+      headers: this._headers,
+      body: JSON.stringify({
+        name: name,
+        about: about,
+      }),
+    });
+  }
+
+  addCard(name, link) {
+    return fetch(`${this._baseUrl}/cards`, {
+      method: 'POST',
+      headers: this._headers,
+      body: JSON.stringify({
+        name: name,
+        link: link,
+      }),
     });
   }
 }
