@@ -9,6 +9,7 @@ import {
   popupEditProfileOpenButton,
   popupAddCardOpenButton,
   popupUpdateAvatarOpenButton,
+  popupSubmit,
   nameInput,
   jobInput,
   cardsContainer,
@@ -23,6 +24,7 @@ import PopupWithImage from '../components/PopupWithImage.js';
 import PopupWithForm from '../components/PopupWithForm.js';
 import UserInfo from '../components/UserInfo.js';
 import Api from '../components/Api.js';
+import PopupWithSubmit from '../components/PopupWithSubmit.js';
 
 const popupOpenImage = new PopupWithImage(popupImage);
 
@@ -45,12 +47,30 @@ api
     console.log(err);
   });
 
+api
+  .getInitialCards()
+  .then((res) => {
+    cardList.renderItems(res.reverse());
+  })
+  .then((err) => {
+    console.log(err);
+  });
+
 function createCard(dataCard) {
   const card = new Card({
     data: dataCard,
     cardSelectors,
     handleCardClick: () => {
       popupOpenImage.open(dataCard.name, dataCard.link);
+    },
+    handleCardDelete: () => {
+      popupWithSubmit.open();
+      popupWithSubmit.handleSubmitRedefinition(() => {
+        api.deleteCard(card._id).catch((err) => {
+          console.log(err);
+        });
+        card._deleteCard();
+      });
     },
   });
   cardList.addItem(card.generateCard());
@@ -59,7 +79,6 @@ function createCard(dataCard) {
 const cardList = new Section(
   {
     data: [],
-    // data: initialCards,
     renderer: (initialCards) => {
       createCard(initialCards);
     },
@@ -67,14 +86,15 @@ const cardList = new Section(
   cardsContainer
 );
 
-api
-  .getInitialCards()
-  .then((res) => {
-    cardList.renderItems(res.reverse());
-  })
-  .catch((err) => {
-    console.log(err);
-  });
+const popupWithSubmit = new PopupWithSubmit({
+  popup: popupSubmit,
+  handleSubmitForm: () => {
+    // api.deleteCard('6318d730e7200a0f906533d9');
+    // card._deleteCard();
+  },
+});
+
+popupWithSubmit.setEventListeners();
 
 const popupAddCardForm = new PopupWithForm({
   popup: popupAddCard,

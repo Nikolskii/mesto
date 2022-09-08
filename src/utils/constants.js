@@ -55,6 +55,7 @@ const popupImage = document.querySelector('.popup_purpose_open-image');
 const popupUpdateAvatar = document.querySelector(
   '.popup_purpose_update-avatar'
 );
+const popupSubmit = document.querySelector('.popup_purpose_submit');
 
 // Open buttons
 const popupEditProfileOpenButton = document.querySelector(
@@ -88,6 +89,7 @@ export {
   popupEditProfileOpenButton,
   popupAddCardOpenButton,
   popupUpdateAvatarOpenButton,
+  popupSubmit,
   nameInput,
   jobInput,
   cardsContainer,
