@@ -3,6 +3,7 @@ export default class UserInfo {
     this._userName = data.userName;
     this._userAbout = data.userAbout;
     this._userAvatar = data.userAvatar;
+    this._userId = null;
   }
 
   getUserInfo() {
@@ -14,17 +15,18 @@ export default class UserInfo {
     return userData;
   }
 
-  // setUserInfo(configProfile) {
-  //   this._userName.textContent = configProfile.name;
-  //   this._userAbout.textContent = configProfile.about;
-  //   this._userAvatar.src = configProfile.avatar;
-  // }
-
   setUserInfo({ name, about, avatar }) {
     this._userName.textContent = name;
     this._userAbout.textContent = about;
     if (avatar) {
       this._userAvatar.src = avatar;
     }
+  }
+
+  getUserId(id) {
+    if (id) {
+      this._userId = id;
+    }
+    return this._userId;
   }
 }

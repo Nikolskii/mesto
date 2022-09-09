@@ -42,6 +42,7 @@ api
   .downloadUserInfo()
   .then((res) => {
     userInfo.setUserInfo(res);
+    userInfo.getUserId(res._id);
   })
   .catch((err) => {
     console.log(err);
@@ -59,6 +60,7 @@ api
 function createCard(dataCard) {
   const card = new Card({
     data: dataCard,
+    userId: userInfo.getUserId(),
     cardSelectors,
     handleCardClick: () => {
       popupOpenImage.open(dataCard.name, dataCard.link);
@@ -66,7 +68,7 @@ function createCard(dataCard) {
     handleCardDelete: () => {
       popupWithSubmit.open();
       popupWithSubmit.handleSubmitRedefinition(() => {
-        api.deleteCard(card._id).catch((err) => {
+        api.deleteCard(card._cardId).catch((err) => {
           console.log(err);
         });
         card._deleteCard();
