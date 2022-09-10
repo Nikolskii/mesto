@@ -121,6 +121,8 @@ const cardList = new Section(
 const popupAddCardForm = new PopupWithForm({
   popup: popupAddCard,
   handleSubmitForm: (formData) => {
+    popupAddCardForm.renderLoading(true);
+
     const configCard = {
       name: formData.form__input_type_place,
       link: formData.form__input_type_link,
@@ -131,6 +133,9 @@ const popupAddCardForm = new PopupWithForm({
       .then((res) => createCard(res))
       .catch((err) => {
         console.log(err);
+      })
+      .finally(() => {
+        popupAddCardForm.renderLoading(false);
       });
   },
 });
@@ -138,6 +143,8 @@ const popupAddCardForm = new PopupWithForm({
 const popupEditProfileForm = new PopupWithForm({
   popup: popupEditProfile,
   handleSubmitForm: (formData) => {
+    popupEditProfileForm.renderLoading(true);
+
     const configProfile = {
       name: formData.form__input_type_name,
       about: formData.form__input_type_job,
@@ -153,6 +160,9 @@ const popupEditProfileForm = new PopupWithForm({
       })
       .catch((err) => {
         console.log(err);
+      })
+      .finally(() => {
+        popupEditProfileForm.renderLoading(false);
       });
   },
 });
@@ -160,6 +170,8 @@ const popupEditProfileForm = new PopupWithForm({
 const popupUpdateAvatarForm = new PopupWithForm({
   popup: popupUpdateAvatar,
   handleSubmitForm: (formData) => {
+    popupUpdateAvatarForm.renderLoading(true);
+
     api
       .updateUserAvatar(Object.values(formData)[0])
       .then((res) => {
@@ -167,6 +179,9 @@ const popupUpdateAvatarForm = new PopupWithForm({
       })
       .catch((err) => {
         console.log(err);
+      })
+      .finally(() => {
+        popupUpdateAvatarForm.renderLoading(false);
       });
   },
 });
