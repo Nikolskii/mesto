@@ -41,26 +41,7 @@ const api = new Api({
   },
 });
 
-// Получение карточек с сервера
-const initialCards = await api.getInitialCards().catch((err) => {
-  console.log(err);
-});
-
-// Создание контейнера карточек
-const cardList = new Section(
-  {
-    data: initialCards,
-    renderer: (initialCards) => {
-      createCard(initialCards);
-    },
-  },
-  cardsContainer
-);
-
-// Отображение карточек с сервера
-cardList.renderItems();
-
-// Получение и отображение информации о пользователе
+// Получение информации о пользователе
 api
   .downloadUserInfo()
   .then((res) => {
@@ -68,6 +49,16 @@ api
     userInfo.getUserId(res._id);
   })
   .catch((err) => {
+    console.log(err);
+  });
+
+// Получение карточек с сервера
+api
+  .getInitialCards()
+  .then((res) => {
+    cardList.renderItems(res.reverse());
+  })
+  .then((err) => {
     console.log(err);
   });
 
@@ -119,6 +110,16 @@ function createCard(dataCard) {
   });
   cardList.addItem(card.generateCard());
 }
+
+const cardList = new Section(
+  {
+    data: [],
+    renderer: (initialCards) => {
+      createCard(initialCards);
+    },
+  },
+  cardsContainer
+);
 
 // Форма добавления карточки
 const popupAddCardForm = new PopupWithForm({
