@@ -54,7 +54,6 @@ const jobInput = formEditProfile.querySelector('.form__input_type_job');
 const cardsContainer = document.querySelector('.elements');
 
 export {
-  // initialCards,
   popupEditProfile,
   popupAddCard,
   popupImage,

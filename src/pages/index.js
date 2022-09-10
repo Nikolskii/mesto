@@ -1,7 +1,6 @@
 // import '../pages/index.css';
 
 import {
-  // initialCards,
   popupEditProfile,
   popupAddCard,
   popupImage,
@@ -27,6 +26,7 @@ import Api from '../components/Api.js';
 import PopupWithSubmit from '../components/PopupWithSubmit.js';
 
 const popupOpenImage = new PopupWithImage(popupImage);
+
 const userInfo = new UserInfo(userData);
 
 const popupWithSubmit = new PopupWithSubmit({
@@ -41,6 +41,7 @@ const api = new Api({
   },
 });
 
+// Получение информации о пользователе
 api
   .downloadUserInfo()
   .then((res) => {
@@ -51,15 +52,27 @@ api
     console.log(err);
   });
 
+// Получение карточек с сервера
 api
   .getInitialCards()
   .then((res) => {
+    const cardList = new Section(
+      {
+        data: res,
+        renderer: (initialCards) => {
+          createCard(initialCards);
+        },
+      },
+      cardsContainer
+    );
+
     cardList.renderItems(res.reverse());
   })
   .then((err) => {
     console.log(err);
   });
 
+// Создание карточки
 function createCard(dataCard) {
   const card = new Card({
     data: dataCard,
@@ -72,7 +85,7 @@ function createCard(dataCard) {
       popupWithSubmit.open();
       popupWithSubmit.handleSubmitRedefinition(() => {
         api
-          .deleteCard(card._cardId)
+          .deleteCard(card.cardId)
           .then(() => card.deleteCard())
           .catch((err) => {
             console.log(err);
@@ -82,7 +95,7 @@ function createCard(dataCard) {
     handleCardLike: () => {
       if (!card.checkLikeSetted()) {
         api
-          .addLikeCard(card._cardId)
+          .addLikeCard(card.cardId)
           .then((res) => {
             card.addLike();
             card.countLikes(res.likes);
@@ -93,7 +106,7 @@ function createCard(dataCard) {
           });
       } else {
         api
-          .deleteLikeCard(card._cardId)
+          .deleteLikeCard(card.cardId)
           .then((res) => {
             card.deleteLike();
             card.countLikes(res.likes);
@@ -118,6 +131,7 @@ const cardList = new Section(
   cardsContainer
 );
 
+// Форма добавления карточки
 const popupAddCardForm = new PopupWithForm({
   popup: popupAddCard,
   handleSubmitForm: (formData) => {
@@ -140,6 +154,7 @@ const popupAddCardForm = new PopupWithForm({
   },
 });
 
+// Форма редактирования профиля
 const popupEditProfileForm = new PopupWithForm({
   popup: popupEditProfile,
   handleSubmitForm: (formData) => {
@@ -167,6 +182,7 @@ const popupEditProfileForm = new PopupWithForm({
   },
 });
 
+// Форма обноваления аватара
 const popupUpdateAvatarForm = new PopupWithForm({
   popup: popupUpdateAvatar,
   handleSubmitForm: (formData) => {
@@ -186,27 +202,7 @@ const popupUpdateAvatarForm = new PopupWithForm({
   },
 });
 
-popupOpenImage.setEventListeners();
-popupAddCardForm.setEventListeners();
-popupEditProfileForm.setEventListeners();
-popupUpdateAvatarForm.setEventListeners();
-popupWithSubmit.setEventListeners();
-
-const formEditProfileValidation = new FormValidator(
-  formSelectors,
-  formSelectors.formEditProfile
-);
-
-const formAddCardValidation = new FormValidator(
-  formSelectors,
-  formSelectors.formAddCard
-);
-
-const formUpdateAvatarValidation = new FormValidator(
-  formSelectors,
-  formSelectors.formUpdateAvatar
-);
-
+// Слушатели событий
 popupEditProfileOpenButton.addEventListener('click', () => {
   formEditProfileValidation.resetValidation();
 
@@ -229,6 +225,28 @@ popupUpdateAvatarOpenButton.addEventListener('click', () => {
 
   popupUpdateAvatarForm.open();
 });
+
+popupOpenImage.setEventListeners();
+popupAddCardForm.setEventListeners();
+popupEditProfileForm.setEventListeners();
+popupUpdateAvatarForm.setEventListeners();
+popupWithSubmit.setEventListeners();
+
+// Валидация форм
+const formEditProfileValidation = new FormValidator(
+  formSelectors,
+  formSelectors.formEditProfile
+);
+
+const formAddCardValidation = new FormValidator(
+  formSelectors,
+  formSelectors.formAddCard
+);
+
+const formUpdateAvatarValidation = new FormValidator(
+  formSelectors,
+  formSelectors.formUpdateAvatar
+);
 
 formEditProfileValidation.enableValidation();
 formAddCardValidation.enableValidation();
