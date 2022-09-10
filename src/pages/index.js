@@ -27,8 +27,11 @@ import Api from '../components/Api.js';
 import PopupWithSubmit from '../components/PopupWithSubmit.js';
 
 const popupOpenImage = new PopupWithImage(popupImage);
-
 const userInfo = new UserInfo(userData);
+
+const popupWithSubmit = new PopupWithSubmit({
+  popup: popupSubmit,
+});
 
 const api = new Api({
   baseUrl: 'https://mesto.nomoreparties.co/v1/cohort-50',
@@ -68,10 +71,12 @@ function createCard(dataCard) {
     handleCardDelete: () => {
       popupWithSubmit.open();
       popupWithSubmit.handleSubmitRedefinition(() => {
-        api.deleteCard(card._cardId).catch((err) => {
-          console.log(err);
-        });
-        card._deleteCard();
+        api
+          .deleteCard(card._cardId)
+          .then(() => card.deleteCard())
+          .catch((err) => {
+            console.log(err);
+          });
       });
     },
   });
@@ -88,16 +93,6 @@ const cardList = new Section(
   cardsContainer
 );
 
-const popupWithSubmit = new PopupWithSubmit({
-  popup: popupSubmit,
-  handleSubmitForm: () => {
-    // api.deleteCard('6318d730e7200a0f906533d9');
-    // card._deleteCard();
-  },
-});
-
-popupWithSubmit.setEventListeners();
-
 const popupAddCardForm = new PopupWithForm({
   popup: popupAddCard,
   handleSubmitForm: (formData) => {
@@ -106,9 +101,12 @@ const popupAddCardForm = new PopupWithForm({
       link: formData.form__input_type_link,
     };
 
-    api.addCard(configCard.name, configCard.link);
-
-    createCard(configCard);
+    api
+      .addCard(configCard.name, configCard.link)
+      .then((res) => createCard(res))
+      .catch((err) => {
+        console.log(err);
+      });
   },
 });
 
@@ -120,12 +118,17 @@ const popupEditProfileForm = new PopupWithForm({
       about: formData.form__input_type_job,
     };
 
-    api.updateUserInfo(configProfile.name, configProfile.about);
-
-    userInfo.setUserInfo({
-      name: configProfile.name,
-      about: configProfile.about,
-    });
+    api
+      .updateUserInfo(configProfile.name, configProfile.about)
+      .then((res) => {
+        userInfo.setUserInfo({
+          name: res.name,
+          about: res.about,
+        });
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   },
 });
 
@@ -140,6 +143,7 @@ popupOpenImage.setEventListeners();
 popupAddCardForm.setEventListeners();
 popupEditProfileForm.setEventListeners();
 popupUpdateAvatarForm.setEventListeners();
+popupWithSubmit.setEventListeners();
 
 const formEditProfileValidation = new FormValidator(
   formSelectors,

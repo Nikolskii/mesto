@@ -10,11 +10,14 @@ export default class Card {
     this._link = data.link;
     this._cardId = data._id;
     this._ownerId = data.owner._id;
+    this._likes = data.likes.length;
+
     this._userId = userId;
-    // this._likes = data.likes.length;
     this._selectors = cardSelectors;
+
     this._handleCardClick = handleCardClick;
     this.handleCardDelete = handleCardDelete;
+
     this._card = document
       .querySelector(this._selectors.template)
       .content.querySelector(this._selectors.cardBlank)
@@ -57,7 +60,7 @@ export default class Card {
     this._buttonLike.classList.toggle(this._selectors.likeActive);
   }
 
-  _deleteCard() {
+  deleteCard() {
     this._card.remove();
   }
 
