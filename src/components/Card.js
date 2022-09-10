@@ -69,18 +69,16 @@ export default class Card {
     }
   }
 
-  addLike(data) {
-    this._buttonLike.classList.add(this._selectors.likeActive);
-    if (data) {
-      this._likes = data.likes;
-    }
+  updateLikes(data) {
+    this._likes = data.likes;
   }
 
-  deleteLike(data) {
+  addLike() {
+    this._buttonLike.classList.add(this._selectors.likeActive);
+  }
+
+  deleteLike() {
     this._buttonLike.classList.remove(this._selectors.likeActive);
-    if (data) {
-      this._likes = data.likes;
-    }
   }
 
   checkLikeSetted() {

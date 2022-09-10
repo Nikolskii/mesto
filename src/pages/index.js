@@ -84,8 +84,9 @@ function createCard(dataCard) {
         api
           .addLikeCard(card._cardId)
           .then((res) => {
-            card.addLike(res);
+            card.addLike();
             card.countLikes(res.likes);
+            card.updateLikes(res);
           })
           .catch((err) => {
             console.log(err);
@@ -94,8 +95,9 @@ function createCard(dataCard) {
         api
           .deleteLikeCard(card._cardId)
           .then((res) => {
-            card.deleteLike(res);
+            card.deleteLike();
             card.countLikes(res.likes);
+            card.updateLikes(res);
           })
           .catch((err) => {
             console.log(err);
@@ -158,7 +160,14 @@ const popupEditProfileForm = new PopupWithForm({
 const popupUpdateAvatarForm = new PopupWithForm({
   popup: popupUpdateAvatar,
   handleSubmitForm: (formData) => {
-    userData.userAvatar.src = Object.values(formData);
+    api
+      .updateUserAvatar(Object.values(formData)[0])
+      .then((res) => {
+        userData.userAvatar.src = res.avatar;
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   },
 });
 
