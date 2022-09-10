@@ -13,12 +13,14 @@ export default class Api {
 
   downloadUserInfo() {
     return fetch(`${this._baseUrl}/users/me`, {
+      method: 'GET',
       headers: this._headers,
     }).then((res) => this._checkServerResponse(res));
   }
 
   getInitialCards() {
     return fetch(`${this._baseUrl}/cards`, {
+      method: 'GET',
       headers: this._headers,
     }).then((res) => this._checkServerResponse(res));
   }
@@ -49,6 +51,20 @@ export default class Api {
     return fetch(`${this._baseUrl}/cards/${cardId}`, {
       method: 'DELETE',
       headers: this._headers,
-    });
+    }).then((res) => this._checkServerResponse(res));
+  }
+
+  addLikeCard(cardId) {
+    return fetch(`${this._baseUrl}/cards/${cardId}/likes`, {
+      method: 'PUT',
+      headers: this._headers,
+    }).then((res) => this._checkServerResponse(res));
+  }
+
+  deleteLikeCard(cardId) {
+    return fetch(`${this._baseUrl}/cards/${cardId}/likes`, {
+      method: 'DELETE',
+      headers: this._headers,
+    }).then((res) => this._checkServerResponse(res));
   }
 }

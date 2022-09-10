@@ -79,6 +79,29 @@ function createCard(dataCard) {
           });
       });
     },
+    handleCardLike: () => {
+      if (!card.checkLikeSetted()) {
+        api
+          .addLikeCard(card._cardId)
+          .then((res) => {
+            card.addLike(res);
+            card.countLikes(res.likes);
+          })
+          .catch((err) => {
+            console.log(err);
+          });
+      } else {
+        api
+          .deleteLikeCard(card._cardId)
+          .then((res) => {
+            card.deleteLike(res);
+            card.countLikes(res.likes);
+          })
+          .catch((err) => {
+            console.log(err);
+          });
+      }
+    },
   });
   cardList.addItem(card.generateCard());
 }

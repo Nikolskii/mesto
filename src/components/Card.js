@@ -5,18 +5,20 @@ export default class Card {
     cardSelectors,
     handleCardClick,
     handleCardDelete,
+    handleCardLike,
   }) {
     this._name = data.name;
     this._link = data.link;
     this._cardId = data._id;
     this._ownerId = data.owner._id;
-    this._likes = data.likes.length;
+    this._likes = data.likes;
 
     this._userId = userId;
     this._selectors = cardSelectors;
 
     this._handleCardClick = handleCardClick;
-    this.handleCardDelete = handleCardDelete;
+    this._handleCardDelete = handleCardDelete;
+    this._handleCardLike = handleCardLike;
 
     this._card = document
       .querySelector(this._selectors.template)
@@ -33,7 +35,7 @@ export default class Card {
     this._cardImage.src = this._link;
     this._cardImage.alt = this._name;
     this._cardTitle.textContent = this._name;
-    this._likeCounter.textContent = this._likes;
+    this.countLikes(this._likes);
 
     this._setEventListeners();
 
@@ -46,18 +48,15 @@ export default class Card {
     });
 
     this._buttonLike.addEventListener('click', () => {
-      this._toggleLike();
+      this._handleCardLike();
     });
 
     this._buttonDelete.addEventListener('click', () => {
-      this.handleCardDelete();
+      this._handleCardDelete();
     });
 
     this._removeButtonDelete();
-  }
-
-  _toggleLike() {
-    this._buttonLike.classList.toggle(this._selectors.likeActive);
+    this._setLikeActive();
   }
 
   deleteCard() {
@@ -68,5 +67,37 @@ export default class Card {
     if (this._userId !== this._ownerId) {
       this._buttonDelete.remove();
     }
+  }
+
+  addLike(data) {
+    this._buttonLike.classList.add(this._selectors.likeActive);
+    if (data) {
+      this._likes = data.likes;
+    }
+  }
+
+  deleteLike(data) {
+    this._buttonLike.classList.remove(this._selectors.likeActive);
+    if (data) {
+      this._likes = data.likes;
+    }
+  }
+
+  checkLikeSetted() {
+    return this._likes.some((item) => {
+      return item._id.includes(this._userId);
+    });
+  }
+
+  _setLikeActive() {
+    if (this.checkLikeSetted()) {
+      this.addLike();
+    } else {
+      this.deleteLike();
+    }
+  }
+
+  countLikes(likes) {
+    this._likeCounter.textContent = likes.length;
   }
 }
