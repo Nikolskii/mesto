@@ -25,102 +25,6 @@ import UserInfo from '../components/UserInfo.js';
 import Api from '../components/Api.js';
 import PopupWithSubmit from '../components/PopupWithSubmit.js';
 
-const popupOpenImage = new PopupWithImage(popupImage);
-
-const userInfo = new UserInfo(userData);
-
-const popupWithSubmit = new PopupWithSubmit({
-  popup: popupSubmit,
-});
-
-const api = new Api({
-  baseUrl: 'https://mesto.nomoreparties.co/v1/cohort-50',
-  headers: {
-    authorization: 'b1e377f1-cd98-498c-a108-b0af0056347c',
-    'Content-Type': 'application/json',
-  },
-});
-
-// Получение информации о пользователе
-api
-  .downloadUserInfo()
-  .then((res) => {
-    userInfo.setUserInfo(res);
-    userInfo.getUserId(res._id);
-  })
-  .catch((err) => {
-    console.log(err);
-  });
-
-// Получение карточек с сервера
-api
-  .getInitialCards()
-  .then((res) => {
-    cardList.renderItems(res.reverse());
-  })
-  .then((err) => {
-    console.log(err);
-  });
-
-// Создание карточки
-function createCard(dataCard) {
-  const card = new Card({
-    data: dataCard,
-    userId: userInfo.getUserId(),
-    cardSelectors,
-    handleCardClick: () => {
-      popupOpenImage.open(dataCard.name, dataCard.link);
-    },
-    handleCardDelete: () => {
-      popupWithSubmit.open();
-      popupWithSubmit.handleSubmitRedefinition(() => {
-        api
-          .deleteCard(card.cardId)
-          .then(() => card.deleteCard())
-          .catch((err) => {
-            console.log(err);
-          });
-      });
-    },
-    handleCardLike: () => {
-      if (!card.checkLikeSetted()) {
-        api
-          .addLikeCard(card.cardId)
-          .then((res) => {
-            card.addLike();
-            card.countLikes(res.likes);
-            card.updateLikes(res);
-          })
-          .catch((err) => {
-            console.log(err);
-          });
-      } else {
-        api
-          .deleteLikeCard(card.cardId)
-          .then((res) => {
-            card.deleteLike();
-            card.countLikes(res.likes);
-            card.updateLikes(res);
-          })
-          .catch((err) => {
-            console.log(err);
-          });
-      }
-    },
-  });
-  cardList.addItem(card.generateCard());
-}
-
-const cardList = new Section(
-  {
-    data: [],
-    renderer: (initialCards) => {
-      createCard(initialCards);
-    },
-  },
-  cardsContainer
-);
-
 // Форма добавления карточки
 const popupAddCardForm = new PopupWithForm({
   popup: popupAddCard,
@@ -191,6 +95,94 @@ const popupUpdateAvatarForm = new PopupWithForm({
       });
   },
 });
+
+// Попап подтверждения
+const popupWithSubmit = new PopupWithSubmit({
+  popup: popupSubmit,
+});
+
+const popupOpenImage = new PopupWithImage(popupImage);
+
+const userInfo = new UserInfo(userData);
+
+const api = new Api({
+  baseUrl: 'https://mesto.nomoreparties.co/v1/cohort-50',
+  headers: {
+    authorization: 'b1e377f1-cd98-498c-a108-b0af0056347c',
+    'Content-Type': 'application/json',
+  },
+});
+
+// Секция карточек
+const cardList = new Section(
+  {
+    renderer: (card) => {
+      createCard(card);
+    },
+  },
+  cardsContainer
+);
+
+// Отображение карточек и информации о пользователе
+Promise.all([api.getUserInfo(), api.getInitialCards()])
+  .then(([userData, InitialCards]) => {
+    userInfo.setUserInfo(userData);
+    userInfo.getUserId(userData._id);
+
+    cardList.renderItems(InitialCards.reverse());
+  })
+  .catch((err) => {
+    console.log(err);
+  });
+
+// Создание карточки
+function createCard(dataCard) {
+  const card = new Card({
+    data: dataCard,
+    userId: userInfo.getUserId(),
+    cardSelectors,
+    handleCardClick: () => {
+      popupOpenImage.open(dataCard.name, dataCard.link);
+    },
+    handleCardDelete: () => {
+      popupWithSubmit.open();
+      popupWithSubmit.handleSubmitRedefinition(() => {
+        api
+          .deleteCard(card.cardId)
+          .then(() => card.deleteCard())
+          .catch((err) => {
+            console.log(err);
+          });
+      });
+    },
+    handleCardLike: () => {
+      if (!card.checkLikeSetted()) {
+        api
+          .addLikeCard(card.cardId)
+          .then((res) => {
+            card.addLike();
+            card.countLikes(res.likes);
+            card.updateLikes(res);
+          })
+          .catch((err) => {
+            console.log(err);
+          });
+      } else {
+        api
+          .deleteLikeCard(card.cardId)
+          .then((res) => {
+            card.deleteLike();
+            card.countLikes(res.likes);
+            card.updateLikes(res);
+          })
+          .catch((err) => {
+            console.log(err);
+          });
+      }
+    },
+  });
+  cardList.addItem(card.generateCard());
+}
 
 // Слушатели событий
 popupEditProfileOpenButton.addEventListener('click', () => {
