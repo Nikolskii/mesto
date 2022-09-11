@@ -28,6 +28,7 @@
 .popup__image{margin:0 0 10px;max-height:75vh;max-width:75vw}
 .popup__caption{color:#fff;font-family:Inter,Arial,sans-serif;font-size:12px;font-weight:400;line-height:1.2}
 .popup__title{color:#000;font-family:Inter,Arial,sans-serif;font-size:24px;font-weight:900;line-height:1.2;margin:0 0 38px}@media screen and (max-width:580px){.popup__title{font-size:18px;margin:0 0 58px}}
+.popup__button{background-color:#000;border:none;border-radius:2px;color:#fff;font-family:Inter,Arial,sans-serif;font-size:18px;font-weight:400;height:50px;line-height:1.2;width:358px}.popup__button:hover{background-color:#2d2d2d;cursor:pointer}@media screen and (max-width:580px){.popup__button{font-size:14px;height:46px;width:238px}}
 
 .form__fieldset{border:none;margin:0;padding:0}
 .form__input{border:none;border-bottom:1px solid #d3d3d3;box-sizing:border-box;color:#000;font-family:Inter,Arial,sans-serif;font-size:14px;font-weight:400;line-height:1.2;margin:0 0 35px;padding:9px;width:358px}.form__input::-moz-placeholder{color:#c4c4c4}.form__input::placeholder{color:#c4c4c4}@media screen and (max-width:580px){.form__input{width:238px}.form__input:last-child{margin-bottom:45px}}
