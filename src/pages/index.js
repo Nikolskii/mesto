@@ -101,6 +101,16 @@ const popupWithSubmit = new PopupWithSubmit({
   popup: popupSubmit,
 });
 
+// Секция карточек
+const cardList = new Section(
+  {
+    renderer: (card) => {
+      createCard(card);
+    },
+  },
+  cardsContainer
+);
+
 const popupOpenImage = new PopupWithImage(popupImage);
 
 const userInfo = new UserInfo(userData);
@@ -113,17 +123,7 @@ const api = new Api({
   },
 });
 
-// Секция карточек
-const cardList = new Section(
-  {
-    renderer: (card) => {
-      createCard(card);
-    },
-  },
-  cardsContainer
-);
-
-// Отображение карточек и информации о пользователе
+//Получение и отображение карточек и информации о пользователе
 Promise.all([api.getUserInfo(), api.getInitialCards()])
   .then(([userData, InitialCards]) => {
     userInfo.setUserInfo(userData);
@@ -184,7 +184,7 @@ function createCard(dataCard) {
   cardList.addItem(card.generateCard());
 }
 
-// Слушатели событий
+// Обработчики событий
 popupEditProfileOpenButton.addEventListener('click', () => {
   formEditProfileValidation.resetValidation();
 
