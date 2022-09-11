@@ -62,10 +62,7 @@ const popupEditProfileForm = new PopupWithForm({
     api
       .updateUserInfo(configProfile.name, configProfile.about)
       .then((res) => {
-        userInfo.setUserInfo({
-          name: res.name,
-          about: res.about,
-        });
+        userInfo.setUserInfo(res);
 
         popupEditProfileForm.close();
       })
@@ -85,9 +82,9 @@ const popupUpdateAvatarForm = new PopupWithForm({
     popupUpdateAvatarForm.renderLoading(true);
 
     api
-      .updateUserAvatar(Object.values(formData)[0])
+      .updateUserAvatar(formData.form__input_type_avatar)
       .then((res) => {
-        document.querySelector(userDataSelectors.avatar).src = res.avatar;
+        userInfo.setUserAvatar(res);
 
         popupUpdateAvatarForm.close();
       })
@@ -133,6 +130,7 @@ const api = new Api({
 Promise.all([api.getUserInfo(), api.getInitialCards()])
   .then(([userData, InitialCards]) => {
     userInfo.setUserInfo(userData);
+    userInfo.setUserAvatar(userData);
     userInfo.setUserId(userData._id);
 
     cardList.renderItems(InitialCards.reverse());
