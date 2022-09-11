@@ -1,3 +1,4 @@
+// Card
 const cardSelectors = {
   template: '.template-element',
   cardBlank: '.element',
@@ -9,6 +10,7 @@ const cardSelectors = {
   likeCounter: '.element__like-counter',
 };
 
+// Form
 const formSelectors = {
   formEditProfile: '.form_purpose_edit-profile',
   formAddCard: '.form_purpose_add-card',
@@ -22,13 +24,13 @@ const formSelectors = {
 };
 
 // Popups
-const popupEditProfile = document.querySelector('.popup_purpose_edit-profile');
-const popupAddCard = document.querySelector('.popup_purpose_add-card');
-const popupImage = document.querySelector('.popup_purpose_open-image');
-const popupUpdateAvatar = document.querySelector(
-  '.popup_purpose_update-avatar'
-);
-const popupSubmit = document.querySelector('.popup_purpose_submit');
+const popupsSelectors = {
+  popupEditProfile: '.popup_purpose_edit-profile',
+  popupAddCard: '.popup_purpose_add-card',
+  popupImage: '.popup_purpose_open-image',
+  popupUpdateAvatar: '.popup_purpose_update-avatar',
+  popupSubmit: '.popup_purpose_submit',
+};
 
 // Open buttons
 const popupEditProfileOpenButton = document.querySelector(
@@ -51,21 +53,17 @@ const formEditProfile = document.querySelector(formSelectors.formEditProfile);
 const nameInput = formEditProfile.querySelector('.form__input_type_name');
 const jobInput = formEditProfile.querySelector('.form__input_type_job');
 
-const cardsContainer = document.querySelector('.elements');
+const cardsContainerSelector = '.elements';
 
 export {
-  popupEditProfile,
-  popupAddCard,
-  popupImage,
-  popupUpdateAvatar,
   popupEditProfileOpenButton,
   popupAddCardOpenButton,
   popupUpdateAvatarOpenButton,
-  popupSubmit,
   nameInput,
   jobInput,
-  cardsContainer,
+  cardsContainerSelector,
   cardSelectors,
   formSelectors,
+  popupsSelectors,
   userData,
 };

@@ -1,19 +1,15 @@
 // import '../pages/index.css';
 
 import {
-  popupEditProfile,
-  popupAddCard,
-  popupImage,
-  popupUpdateAvatar,
   popupEditProfileOpenButton,
   popupAddCardOpenButton,
   popupUpdateAvatarOpenButton,
-  popupSubmit,
   nameInput,
   jobInput,
-  cardsContainer,
+  cardsContainerSelector,
   cardSelectors,
   formSelectors,
+  popupsSelectors,
   userData,
 } from '../utils/constants.js';
 import Card from '../components/Card.js';
@@ -27,7 +23,7 @@ import PopupWithSubmit from '../components/PopupWithSubmit.js';
 
 // Форма добавления карточки
 const popupAddCardForm = new PopupWithForm({
-  popup: popupAddCard,
+  popup: popupsSelectors.popupAddCard,
   handleSubmitForm: (formData) => {
     popupAddCardForm.renderLoading(true);
 
@@ -54,7 +50,7 @@ const popupAddCardForm = new PopupWithForm({
 
 // Форма редактирования профиля
 const popupEditProfileForm = new PopupWithForm({
-  popup: popupEditProfile,
+  popup: popupsSelectors.popupEditProfile,
   handleSubmitForm: (formData) => {
     popupEditProfileForm.renderLoading(true);
 
@@ -84,7 +80,7 @@ const popupEditProfileForm = new PopupWithForm({
 
 // Форма обноваления аватара
 const popupUpdateAvatarForm = new PopupWithForm({
-  popup: popupUpdateAvatar,
+  popup: popupsSelectors.popupUpdateAvatar,
   handleSubmitForm: (formData) => {
     popupUpdateAvatarForm.renderLoading(true);
 
@@ -106,7 +102,7 @@ const popupUpdateAvatarForm = new PopupWithForm({
 
 // Попап подтверждения
 const popupWithSubmit = new PopupWithSubmit({
-  popup: popupSubmit,
+  popup: popupsSelectors.popupSubmit,
 });
 
 // Секция карточек
@@ -116,10 +112,12 @@ const cardList = new Section(
       createCard(card);
     },
   },
-  cardsContainer
+  cardsContainerSelector
 );
 
-const popupOpenImage = new PopupWithImage(popupImage);
+const popupOpenImage = new PopupWithImage({
+  popup: popupsSelectors.popupImage,
+});
 
 const userInfo = new UserInfo(userData);
 
@@ -154,6 +152,7 @@ function createCard(dataCard) {
     },
     handleCardDelete: () => {
       popupWithSubmit.open();
+
       popupWithSubmit.handleSubmitRedefinition(() => {
         api
           .deleteCard(card.cardId)
