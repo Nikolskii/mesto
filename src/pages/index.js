@@ -38,7 +38,11 @@ const popupAddCardForm = new PopupWithForm({
 
     api
       .addCard(configCard.name, configCard.link)
-      .then((res) => createCard(res))
+      .then((res) => {
+        createCard(res);
+
+        popupAddCardForm.close();
+      })
       .catch((err) => {
         console.log(err);
       })
@@ -66,6 +70,8 @@ const popupEditProfileForm = new PopupWithForm({
           name: res.name,
           about: res.about,
         });
+
+        popupEditProfileForm.close();
       })
       .catch((err) => {
         console.log(err);
@@ -86,6 +92,8 @@ const popupUpdateAvatarForm = new PopupWithForm({
       .updateUserAvatar(Object.values(formData)[0])
       .then((res) => {
         userData.userAvatar.src = res.avatar;
+
+        popupUpdateAvatarForm.close();
       })
       .catch((err) => {
         console.log(err);
@@ -149,7 +157,11 @@ function createCard(dataCard) {
       popupWithSubmit.handleSubmitRedefinition(() => {
         api
           .deleteCard(card.cardId)
-          .then(() => card.deleteCard())
+          .then(() => {
+            card.deleteCard();
+
+            popupWithSubmit.close();
+          })
           .catch((err) => {
             console.log(err);
           });
