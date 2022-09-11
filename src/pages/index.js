@@ -10,7 +10,7 @@ import {
   cardSelectors,
   formSelectors,
   popupsSelectors,
-  userData,
+  userDataSelectors,
 } from '../utils/constants.js';
 import Card from '../components/Card.js';
 import FormValidator from '../components/FormValidator.js';
@@ -87,7 +87,7 @@ const popupUpdateAvatarForm = new PopupWithForm({
     api
       .updateUserAvatar(Object.values(formData)[0])
       .then((res) => {
-        userData.userAvatar.src = res.avatar;
+        document.querySelector(userDataSelectors.avatar).src = res.avatar;
 
         popupUpdateAvatarForm.close();
       })
@@ -119,7 +119,7 @@ const popupOpenImage = new PopupWithImage({
   popup: popupsSelectors.popupImage,
 });
 
-const userInfo = new UserInfo(userData);
+const userInfo = new UserInfo(userDataSelectors);
 
 const api = new Api({
   baseUrl: 'https://mesto.nomoreparties.co/v1/cohort-50',
@@ -133,7 +133,7 @@ const api = new Api({
 Promise.all([api.getUserInfo(), api.getInitialCards()])
   .then(([userData, InitialCards]) => {
     userInfo.setUserInfo(userData);
-    userInfo.getUserId(userData._id);
+    userInfo.setUserId(userData._id);
 
     cardList.renderItems(InitialCards.reverse());
   })

@@ -41,11 +41,11 @@ const popupUpdateAvatarOpenButton = document.querySelector(
   '.profile__update-button'
 );
 
-// User info
-const userData = {
-  userName: document.querySelector('.profile__title'),
-  userAbout: document.querySelector('.profile__subtitle'),
-  userAvatar: document.querySelector('.profile__avatar'),
+// User info selectors
+const userDataSelectors = {
+  name: '.profile__title',
+  about: '.profile__subtitle',
+  avatar: '.profile__avatar',
 };
 
 // Edit Profile Form
@@ -65,5 +65,5 @@ export {
   cardSelectors,
   formSelectors,
   popupsSelectors,
-  userData,
+  userDataSelectors,
 };
